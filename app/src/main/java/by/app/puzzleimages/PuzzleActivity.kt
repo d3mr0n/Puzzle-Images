@@ -37,8 +37,22 @@ class PuzzleActivity : AppCompatActivity() {
             RelativeLayout.LayoutParams.MATCH_PARENT
         )
         container.addView(boardView)
+        thread.start()
+    }
 
-        score_count.setText("Score: " + score)
+    // Эto pisec costil'. But it work :)
+    var thread: Thread = object : Thread() {
+        override fun run() {
+            try {
+                while (!this.isInterrupted) {
+                    sleep(500)
+                    runOnUiThread {
+                        score_count.text = "Score: " + score
+                    }
+                }
+            } catch (e: InterruptedException) {
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // Inflate the menu; this adds items to the action bar if it is present.
