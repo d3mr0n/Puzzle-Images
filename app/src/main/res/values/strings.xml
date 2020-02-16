@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Puzzle Images</string>
+    <string name="title_activity_settings">Настройки игры</string>
+    <string name="game_size">Размерность поля</string>
+    <string name="help_text">Здесь должен быть какой-то текст справки по игре…</string>
+    <string name="help_title">Помощь</string>
+    <string name="close">Закрыть</string>
+    <string-array name="game_size_choose">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="game_size_code">
+        <item>3x3</item>
+        <item>4x4</item>
+        <item>5x5</item>
+        <item>6x6</item>
+        <item>7x7</item>
+        <item>8x8</item>
+        <item>9x9</item>
+        <item>10x10</item>
+    </string-array>
+    <string name="notification_title">Мы скучали…</string>
+    <string name="notification_summary">Возвращайтесь и продолжите игру</string>
+    <string name="notify_settings_title">Включить уведомление</string>
+    <string name="notify_settings_summary">Напоминание о игре каждый день</string>
+    <string name="choose_level">Выбор уровня</string>
+    <string name="game_seettings">Настройки игры</string>
+    <string name="sound_summary_off">Звуковые эфекты игры включены</string>
+    <string name="sound_summary_on">Звуковые эфекты игры выключены</string>
+    <string name="sound_title">Звук игры</string>
+    <string name="seek_game_sound">Громкость звука игры</string>
+    <string name="seek_speed_move">Скорость пермещения фишек</string>
+</resources>

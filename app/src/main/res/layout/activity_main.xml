@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/play_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#ffa8a8a8"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="5.0"
+        android:text="Играть"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <Button
+        android:id="@+id/results_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#ffa8a8a8"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="5.0"
+        android:text="Результаты"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <Button
+        android:id="@+id/settings_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#ffa8a8a8"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="5.0"
+        android:text="Настройки"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <Button
+        android:id="@+id/help_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#ffa8a8a8"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="5.0"
+        android:text="Помощь"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <Button
+        android:id="@+id/exit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#ffa8a8a8"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="5.0"
+        android:text="Выход"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+</LinearLayout>
