@@ -1,11 +1,15 @@
 package by.app.puzzleimages
 
 import android.app.AlarmManager
+import android.app.Dialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -29,14 +33,14 @@ class MainActivity : AppCompatActivity() {
         SettingsBtnClick()
         HelpBtnClick()
         ExitBtnClick()
+        results_btn.setOnClickListener {
+            DialogResult()
+        }
     }
 
     fun NotificationReminder() {
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.SECOND, 0)
         calendar.set(Calendar.HOUR, 7)
-        calendar.set(Calendar.MINUTE, 0)
-
         val intent = Intent(getApplicationContext(), AlarmReceiver::class.java)
         intent.setAction("MY_NOTIFICATION_MESSAGE")
         val pendingIntent = PendingIntent.getBroadcast(
@@ -86,5 +90,18 @@ class MainActivity : AppCompatActivity() {
         play_btn.setOnClickListener {
             startActivity(Intent(this, ChooseGameActivity::class.java))
         }
+    }
+
+    fun DialogResult() {
+        val inflater =
+            getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view: View = inflater.inflate(R.layout.dialog_result, null)
+        val dialog = Dialog(this)
+        dialog.setContentView(view)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
+        dialogButton.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        dialog.show()
     }
 }

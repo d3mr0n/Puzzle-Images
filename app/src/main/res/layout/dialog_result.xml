@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/image_info"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@android:drawable/ic_menu_info_details" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_info"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toEndOf="@+id/image_info"
+        android:layout_toRightOf="@+id/image_info"
+        android:fontFamily="sans-serif-light"
+        android:text="Лучшие результаты:"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:id="@+id/tableRow_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#BDBDBD"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/TextView_serial"
+                android:paddingLeft="8dp"
+                android:text="Размер"
+                android:textColor="#464343"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TextView_item_name"
+                android:text="Шаги"
+                android:textColor="#464343"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E0E0E0"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/TextView_serial_no"
+                android:paddingLeft="8dp"
+                android:text="3x3"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextView_item"
+                android:text="284"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="4x4"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="24"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E0E0E0"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="5x5"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="284"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="6x6"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="24"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E0E0E0"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="7x7"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="284"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="8x8"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="24"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E0E0E0"
+            android:gravity="center">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:text="9x9"
+                android:textSize="16sp" />
+
+            <TextView
+                android:text="284"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <Button
+        android:id="@+id/button_reset_results"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/tableLayout1"
+        android:layout_marginTop="8dp"
+        android:layout_toStartOf="@+id/btn_close_result"
+        android:layout_toLeftOf="@+id/btn_close_result"
+        android:text="Сбросить"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:id="@+id/btn_close_result"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/tableLayout1"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:text="Закрыть"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"/>
+
+</RelativeLayout>
