@@ -8,13 +8,16 @@ import android.graphics.Canvas
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import by.app.puzzleimages.PuzzleBoard.Companion.score
 import java.util.*
+
 
 class PuzzleBoardView(context: Context?) : View(context) {
     private val activity: Activity? = context as Activity?
     private var puzzleBoard: PuzzleBoard? = null
     private var animation: ArrayList<PuzzleBoard>?
     private val random = Random()
+    private var count_solve = 0
     fun initialize(imageBitmap: Bitmap?) {
         val width = width
         puzzleBoard = PuzzleBoard(imageBitmap, width)
@@ -25,13 +28,20 @@ class PuzzleBoardView(context: Context?) : View(context) {
         super.onDraw(canvas)
         if (puzzleBoard != null) {
             if (animation != null && animation!!.size > 0) {
+                count_solve++
+                score = 0
                 puzzleBoard = animation!!.removeAt(0)
                 puzzleBoard!!.draw(canvas)
                 if (animation!!.size == 0) {
                     animation = null
                     puzzleBoard!!.reset()
-                    val toast = Toast.makeText(activity, "Solved! ", Toast.LENGTH_LONG)
-                    toast.show()
+                    Toast.makeText(
+                        activity,
+                        "        Solved!" + "\n" +
+                                "Solution steps: ${count_solve-1}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    count_solve = 0
                 } else {
                     this.postInvalidateDelayed(500)
                 }
@@ -48,6 +58,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     puzzleBoard!!.neighbours()
                 val randomIndex = random.nextInt(boards.size)
                 puzzleBoard = boards[randomIndex]
+                score = 0
             }
             refreshScreen()
         }
