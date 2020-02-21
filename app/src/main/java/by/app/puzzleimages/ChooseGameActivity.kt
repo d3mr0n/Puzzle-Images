@@ -1,10 +1,10 @@
 package by.app.puzzleimages
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 
 class ChooseGameActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class ChooseGameActivity : AppCompatActivity() {
     }
 
     fun onClick(v: View) {
-        when (v.getId()) {
+        when (v.id) {
             R.id.area0 -> PuzzleBoard.NUM_TILES = 3
             R.id.area -> PuzzleBoard.NUM_TILES = 4
             R.id.weight -> PuzzleBoard.NUM_TILES = 5
@@ -28,7 +28,7 @@ class ChooseGameActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 return true

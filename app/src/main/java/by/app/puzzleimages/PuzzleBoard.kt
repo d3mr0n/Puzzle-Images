@@ -4,8 +4,10 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.Log
 import java.util.*
+import kotlin.math.abs
 
-class PuzzleBoard {
+@Suppress("NAME_SHADOWING")
+open class PuzzleBoard {
     private var tiles: ArrayList<PuzzleTile?>? =
         ArrayList()
     private var steps = 0
@@ -14,31 +16,29 @@ class PuzzleBoard {
 
     internal constructor(bitmap: Bitmap?, parentWidth: Int) {
         var bitmap = bitmap
-        Log.d(LOG_TAG, "" + bitmap?.getWidth());
+        Log.d(LOG_TAG, "" + bitmap?.width);
         bitmap = Bitmap.createScaledBitmap(bitmap!!, parentWidth, parentWidth, false)
         val tileWidthAndHeight =
             bitmap.width / NUM_TILES
-        for (i in 0 until NUM_TILES) {
-            for (j in 0 until NUM_TILES) {
-                val yStart = i * tileWidthAndHeight
-                val xStart = j * tileWidthAndHeight
-                val b = Bitmap.createBitmap(
-                    bitmap,
-                    xStart,
-                    yStart,
-                    tileWidthAndHeight,
-                    tileWidthAndHeight
-                )
-                if (i == NUM_TILES - 1 && j == NUM_TILES - 1) {
-                    tiles!!.add(null)
-                } else {
-                    tiles!!.add(
-                        PuzzleTile(
-                            b,
-                            i * NUM_TILES + j
-                        )
+        for (i in 0 until NUM_TILES) for (j in 0 until NUM_TILES) {
+            val yStart = i * tileWidthAndHeight
+            val xStart = j * tileWidthAndHeight
+            val b = Bitmap.createBitmap(
+                bitmap,
+                xStart,
+                yStart,
+                tileWidthAndHeight,
+                tileWidthAndHeight
+            )
+            if (i == NUM_TILES - 1 && j == NUM_TILES - 1) {
+                tiles!!.add(null)
+            } else {
+                tiles!!.add(
+                    PuzzleTile(
+                        b,
+                        i * NUM_TILES + j
                     )
-                }
+                )
             }
         }
     }
@@ -52,8 +52,8 @@ class PuzzleBoard {
         previousBoard = null
     }
 
-    override fun equals(o: Any?): Boolean {
-        return if (o == null) false else tiles == (o as PuzzleBoard).tiles
+    override fun equals(other: Any?): Boolean {
+        return if (other == null) false else tiles == (other as PuzzleBoard).tiles
     }
 
     fun draw(canvas: Canvas) {
@@ -95,7 +95,7 @@ class PuzzleBoard {
         for (delta in NEIGHBOUR_COORDS) {
             val nullX = tileX + delta[0]
             val nullY = tileY + delta[1]
-            if (nullX >= 0 && nullX < NUM_TILES && nullY >= 0 && nullY < NUM_TILES && tiles!![XYtoIndex(
+            if (nullX in 0 until NUM_TILES && nullY >= 0 && nullY < NUM_TILES && tiles!![XYtoIndex(
                     nullX,
                     nullY
                 )] == null
@@ -120,7 +120,7 @@ class PuzzleBoard {
         return x + y * NUM_TILES
     }
 
-    protected fun swapTiles(i: Int, j: Int) {
+    private fun swapTiles(i: Int, j: Int) {
         val temp = tiles!![i]
         tiles!![i] = tiles!![j]
         tiles!![j] = temp
@@ -129,8 +129,7 @@ class PuzzleBoard {
     fun neighbours(): ArrayList<PuzzleBoard> {
         val neighbours =
             ArrayList<PuzzleBoard>()
-        val indexOfEmptyTile: Int
-        indexOfEmptyTile = tiles!!.indexOf(null)
+        val indexOfEmptyTile: Int = tiles!!.indexOf(null)
         val emptyX = indexOfEmptyTile % NUM_TILES
         val emptyY = indexOfEmptyTile / NUM_TILES
         var tileX: Int
@@ -139,7 +138,7 @@ class PuzzleBoard {
             tileX = emptyX + delta[0]
             tileY = emptyY + delta[1]
             // If move is within bounds:
-            if (tileX >= 0 && tileX < NUM_TILES && tileY >= 0 && tileY < NUM_TILES) {
+            if (tileX in 0 until NUM_TILES && tileY >= 0 && tileY < NUM_TILES) {
                 val p = PuzzleBoard(this)
                 p.tryMoving(tileX, tileY)
                 neighbours.add(p)
@@ -159,10 +158,10 @@ class PuzzleBoard {
                 tileX = i % NUM_TILES
                 tileY = i / NUM_TILES
                 desiredX =
-                    tiles!![i]!!.getNumber() % NUM_TILES
+                    tiles!![i]!!.number % NUM_TILES
                 desiredY =
-                    tiles!![i]!!.getNumber() / NUM_TILES
-                manhattanDistance += Math.abs(tileX - desiredX) + Math.abs(tileY - desiredY)
+                    tiles!![i]!!.number / NUM_TILES
+                manhattanDistance += abs(tileX - desiredX) + abs(tileY - desiredY)
             }
         }
         return manhattanDistance + steps
@@ -181,12 +180,8 @@ class PuzzleBoard {
     }
 
     fun sameStateAs(otherBoard: PuzzleBoard?): Boolean {
-        for (i in tiles!!.indices) {
-            if (tiles!![i] != null && otherBoard!!.tiles!![i] != null) {
-                if (tiles!![i]!!.getNumber() != otherBoard.tiles!![i]!!.getNumber()) {
-                    return false
-                }
-            }
+        for (i in tiles!!.indices) if (tiles!![i] != null && otherBoard!!.tiles!![i] != null) if (tiles!![i]!!.number != otherBoard.tiles!![i]!!.getNumber()) {
+            return false
         }
         return true
     }

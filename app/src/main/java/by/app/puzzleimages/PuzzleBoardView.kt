@@ -1,5 +1,6 @@
 package by.app.puzzleimages
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,7 +11,7 @@ import android.widget.Toast
 import java.util.*
 
 class PuzzleBoardView(context: Context?) : View(context) {
-    private val activity: Activity?
+    private val activity: Activity? = context as Activity?
     private var puzzleBoard: PuzzleBoard? = null
     private var animation: ArrayList<PuzzleBoard>?
     private val random = Random()
@@ -45,13 +46,14 @@ class PuzzleBoardView(context: Context?) : View(context) {
             for (i in 0 until NUM_SHUFFLE_STEPS) {
                 val boards =
                     puzzleBoard!!.neighbours()
-                val randomIndex = random.nextInt(boards!!.size)
+                val randomIndex = random.nextInt(boards.size)
                 puzzleBoard = boards[randomIndex]
             }
             refreshScreen()
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (animation == null && puzzleBoard != null) {
             when (event.action) {
@@ -84,7 +86,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
                 boards.clear()
                 val solvePath =
                     retrievedBoard.allPreviousBoards()
-                Collections.reverse(solvePath)
+                solvePath.reverse()
                 retrievedBoard.reset()
                 animation = solvePath
                 invalidate()
@@ -98,7 +100,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
     ) {
         for (neighbour in currentBoard!!.neighbours()) {
             if (currentBoard.previousBoard == null ||
-                !neighbour!!.sameStateAs(currentBoard.previousBoard)
+                !neighbour.sameStateAs(currentBoard.previousBoard)
             ) {
                 neighbour.previousBoard = currentBoard
                 heap.add(neighbour)
@@ -114,19 +116,22 @@ class PuzzleBoardView(context: Context?) : View(context) {
     companion object {
         const val NUM_SHUFFLE_STEPS = 40
         val COMPARATOR: Comparator<PuzzleBoard> =
-            Comparator<PuzzleBoard> { puzzleBoard, t1 ->
-                if (puzzleBoard.priority() < t1.priority()) {
-                    -1
-                } else if (puzzleBoard.priority() > t1.priority()) {
-                    1
-                } else {
-                    0
+            Comparator { puzzleBoard, t1 ->
+                when {
+                    puzzleBoard.priority() < t1.priority() -> {
+                        -1
+                    }
+                    puzzleBoard.priority() > t1.priority() -> {
+                        1
+                    }
+                    else -> {
+                        0
+                    }
                 }
             }
     }
 
     init {
-        activity = context as Activity?
         animation = null
     }
 }

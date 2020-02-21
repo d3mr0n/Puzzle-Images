@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.media.ExifInterface.*
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -213,13 +214,13 @@ class PuzzleActivity : AppCompatActivity() {
     private fun rotateImageIfRequired(image: Bitmap?, imageUri: Uri?): Bitmap? {
         val ei = ExifInterface(imageUri!!.path)
         val orientation = ei.getAttributeInt(
-            ExifInterface.TAG_ORIENTATION,
-            ExifInterface.ORIENTATION_NORMAL
+            TAG_ORIENTATION,
+            ORIENTATION_NORMAL
         )
         return when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(image, 90)
-            ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(image, 180)
-            ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(image, 270)
+            ORIENTATION_ROTATE_90 -> rotateImage(image, 90)
+            ORIENTATION_ROTATE_180 -> rotateImage(image, 180)
+            ORIENTATION_ROTATE_270 -> rotateImage(image, 270)
             else -> image
         }
     }

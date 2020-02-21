@@ -1,5 +1,6 @@
 package by.app.puzzleimages
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.Dialog
 import android.app.PendingIntent
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,25 +28,25 @@ class MainActivity : AppCompatActivity() {
                 true
             )
         ) {
-            Log.i("Notify", "Alarm");
-            NotificationReminder()
+            Log.i("Notify", "Alarm")
+            notificationReminder()
         }
-        GameBtnClick()
-        SettingsBtnClick()
-        HelpBtnClick()
-        ExitBtnClick()
+        gameBtnClick()
+        settingsBtnClick()
+        helpBtnClick()
+        exitBtnClick()
         results_btn.setOnClickListener {
-            DialogResult()
+            dialogResult()
         }
     }
 
-    fun NotificationReminder() {
+    private fun notificationReminder() {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR, 7)
-        val intent = Intent(getApplicationContext(), AlarmReceiver::class.java)
-        intent.setAction("MY_NOTIFICATION_MESSAGE")
+        val intent = Intent(applicationContext, AlarmReceiver::class.java)
+        intent.action = "MY_NOTIFICATION_MESSAGE"
         val pendingIntent = PendingIntent.getBroadcast(
-            getApplicationContext(),
+            applicationContext,
             100,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT
@@ -58,18 +60,18 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun ExitBtnClick() {
+    private fun exitBtnClick() {
         exit_btn.setOnClickListener {
             Toast.makeText(this@MainActivity, "Приложение закрыто...", Toast.LENGTH_SHORT).show()
             this.finishAffinity()
-            System.exit(0)
+            exitProcess(0)
         }
     }
 
-    fun HelpBtnClick() {
+    private fun helpBtnClick() {
         help_btn.setOnClickListener {
-            val HelpDialog = AlertDialog.Builder(this)
-            with(HelpDialog) {
+            val helpDialog = AlertDialog.Builder(this)
+            with(helpDialog) {
                 setTitle(R.string.help_title)
                 setMessage(R.string.help_text)
                 setIcon(android.R.drawable.ic_dialog_info)
@@ -79,20 +81,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun SettingsBtnClick() {
+    private fun settingsBtnClick() {
         settings_btn.setOnClickListener {
-            val SettingsIntent = Intent(this, SettingsActivity::class.java)
-            startActivity(SettingsIntent)
+            val settingsIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(settingsIntent)
         }
     }
 
-    fun GameBtnClick() {
+    private fun gameBtnClick() {
         play_btn.setOnClickListener {
             startActivity(Intent(this, ChooseGameActivity::class.java))
         }
     }
 
-    fun DialogResult() {
+    @SuppressLint("InflateParams")
+    fun dialogResult() {
         val inflater =
             getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.dialog_result, null)
@@ -101,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
-        dialogButton.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        dialogButton.setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 }

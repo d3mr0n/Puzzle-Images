@@ -39,9 +39,9 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentInfo("Info")
 
 //        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("sound_switch", true)) {
-            if (intent?.getAction().equals("MY_NOTIFICATION_MESSAGE")) {
+            if (intent?.action.equals("MY_NOTIFICATION_MESSAGE")) {
 //                Toast.makeText(context, "is ON", Toast.LENGTH_SHORT).show()
-                notificationManager.notify(100, builder.build());
+                notificationManager.notify(100, builder.build())
 //                Log.i("Notify", "Alarm");
             }
     }
