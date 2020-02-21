@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">Puzzle Images</string>
     <string name="title_activity_settings">Настройки игры</string>
+    <string name="title_game_settings">Puzzle</string>
+    <string name="title_choose_level">Выбор уровня</string>
     <string name="game_size">Размерность поля</string>
     <string name="help_text">Здесь должен быть какой-то текст справки по игре…</string>
     <string name="help_title">Помощь</string>
@@ -30,8 +32,7 @@
     <string name="notification_summary">Возвращайтесь и продолжите игру</string>
     <string name="notify_settings_title">Включить уведомление</string>
     <string name="notify_settings_summary">Напоминание о игре каждый день</string>
-    <string name="choose_level">Выбор уровня</string>
-    <string name="game_seettings">Настройки игры</string>
+    <string name="game_settings">Настройки игры</string>
     <string name="sound_summary_off">Звуковые эфекты игры включены</string>
     <string name="sound_summary_on">Звуковые эфекты игры выключены</string>
     <string name="sound_title">Звук игры</string>

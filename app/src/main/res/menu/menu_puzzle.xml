@@ -1,6 +1,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".PuzzleActivity">
-    <item android:id="@+id/action_settings" android:title="@string/game_seettings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PuzzleActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="1"
+        android:title="@string/game_settings" />
+    <item
+        android:id="@+id/action_solve"
+        android:icon="@drawable/shuffle_icn"
+        android:orderInCategory="2"
+        android:title="Собрать паззл"/>
+    <item
+        android:id="@+id/action_shuffle"
+        android:icon="@drawable/shuffle_icn"
+        android:orderInCategory="2"
+        android:title="Shuffle"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_gallery"
+        android:icon="@drawable/add_gallery_icn"
+        android:orderInCategory="3"
+        android:title="Take Gallery"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@drawable/add_camera_icn"
+        android:orderInCategory="4"
+        android:title="Take Camera"
+        app:showAsAction="always" />
+
+
 </menu>

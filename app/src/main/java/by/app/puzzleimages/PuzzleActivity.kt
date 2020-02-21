@@ -1,6 +1,8 @@
 package by.app.puzzleimages
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,27 +11,38 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import kotlinx.android.synthetic.main.activity_game.*
 import java.io.File
 import java.io.IOException
 
+@Suppress(
+    "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION", "NAME_SHADOWING",
+    "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+)
 class PuzzleActivity : AppCompatActivity() {
+    private var doubleBackToExitPressedOnce = false
     private var imageBitmap: Bitmap? = null
     private var boardView: PuzzleBoardView? = null
     private var photoURI: Uri? = null
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    private var photo: File? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         // This code programmatically adds the PuzzleBoardView to the UI.
-        val container = findViewById(R.id.puzzle_container) as RelativeLayout
+        val container = findViewById<RelativeLayout>(R.id.puzzle_container)
         boardView = PuzzleBoardView(this)
         // Some setup of the view.
         boardView!!.layoutParams = RelativeLayout.LayoutParams(
@@ -37,42 +50,98 @@ class PuzzleActivity : AppCompatActivity() {
             RelativeLayout.LayoutParams.MATCH_PARENT
         )
         container.addView(boardView)
-        thread.start()
+        putImagePuzzle()
+        countScore.start()
     }
 
-    // Эto pisec costil'. But it work :)
-    var thread: Thread = object : Thread() {
+    // This add local app image to Puzzle to RelativeLayout
+    private fun putImagePuzzle() {
+        Handler().postDelayed({
+            imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.img)
+            cropImageToSquare()
+            boardView!!.initialize(imageBitmap)
+        }, 10)
+    }
+
+    // Counting Score of tile moves
+    private var countScore: Thread = object : Thread() {
+        @SuppressLint("SetTextI18n")
         override fun run() {
             try {
                 while (!this.isInterrupted) {
                     sleep(500)
-                    runOnUiThread {
-                        score_count.text = "Score: " + score
-                    }
+                    runOnUiThread { score_count.text = "" + score }
                 }
             } catch (e: InterruptedException) {
             }
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_puzzle, menu)
+    // Double click 'Back' buttn to return from game
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(
+            this,
+            "Please click BACK again to exit\nThe game will be reset!",
+            Toast.LENGTH_SHORT
+        ).show()
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
+
+    // Inflate the menu; this adds items to the action bar if it is present.
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_puzzle, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // Handle action bar item clicks here. The action bar will
-// automatically handle clicks on the Home/Up button, so long
-// as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-        return if (id == R.id.action_settings) {
+    // Buttons of ActionBar
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_settings -> {
+            startActivity(Intent(this, SettingsActivity::class.java))
             true
-        } else super.onOptionsItemSelected(item)
+        }
+        R.id.action_shuffle -> {
+            boardView!!.shuffle()
+            true
+        }
+        R.id.action_solve -> {
+            boardView!!.solve()
+            true
+        }
+        R.id.action_camera -> {
+            dispatchTakeCamera()
+            true
+        }
+        R.id.action_gallery -> {
+            dispatchTakeGallery()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
-    fun dispatchTakePictureIntent(view: View?) {
+    // Show Dialog of all results
+    @SuppressLint("InflateParams")
+    fun highScoreView() {
+        val inflater =
+            getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view: View = inflater.inflate(R.layout.dialog_result, null)
+        val dialog = Dialog(this)
+        dialog.setContentView(view)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
+        dialogButton.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    // Take Picture from Camera
+    private fun dispatchTakeCamera() {
         val takePicIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePicIntent.resolveActivity(getPackageManager()) != null) {
-            var photo: File? = null
+        if (takePicIntent.resolveActivity(packageManager) != null) {
             try {
                 photo = createImageFile()
             } catch (ex: IOException) {
@@ -93,10 +162,11 @@ class PuzzleActivity : AppCompatActivity() {
         }
     }
 
-    fun dispatchTakeGallery(view: View?) {
+    // Take Picture from Gallery
+    private fun dispatchTakeGallery() {
         val takePicIntent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        if (takePicIntent.resolveActivity(getPackageManager()) != null) {
+        if (takePicIntent.resolveActivity(packageManager) != null) {
             startActivityForResult(
                 takePicIntent,
                 PICK_IMAGE_REQUEST
@@ -104,11 +174,12 @@ class PuzzleActivity : AppCompatActivity() {
         }
     }
 
+    // Call
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             try {
-                imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI)
+                imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, photoURI)
                 imageBitmap = rotateImageIfRequired(imageBitmap, photoURI)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -118,27 +189,15 @@ class PuzzleActivity : AppCompatActivity() {
             deletePicHistory()
         } else if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
             val imageUri = data?.data
-            val bitmap: Bitmap? = null
             try {
-                imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri)
+                imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+                imageBitmap = rotateImageIfRequired(imageBitmap, imageUri)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            cropImageToSquare()
             boardView!!.initialize(imageBitmap)
         }
-    }
-
-    fun shuffleImage(view: View?) {
-        boardView!!.shuffle()
-    }
-
-    fun solve(view: View?) {
-        boardView!!.solve()
-    }
-
-    fun useStockPic(view: View?) {
-        imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img)
-        boardView!!.initialize(imageBitmap)
     }
 
     @Throws(IOException::class)
@@ -149,7 +208,7 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     // Some phones store image in landscape, some in portrait.
-// In either case, rotate them appropriately. Code taken from StackOverflow.
+    // In either case, rotate them appropriately. Code taken from StackOverflow.
     @Throws(IOException::class)
     private fun rotateImageIfRequired(image: Bitmap?, imageUri: Uri?): Bitmap? {
         val ei = ExifInterface(imageUri!!.path)
@@ -196,19 +255,11 @@ class PuzzleActivity : AppCompatActivity() {
         val height = imageBitmap!!.height
         if (height > width) {
             val crop = (height - width) / 2
-            val cropImg = Bitmap.createBitmap(imageBitmap!!, 0, crop, width, width)
+            imageBitmap = Bitmap.createBitmap(imageBitmap!!, 0, crop, width, width)
         } else if (width > height) {
             val crop = (width - height) / 2
-            val cropImg = Bitmap.createBitmap(imageBitmap!!, crop, 0, height, height)
+            imageBitmap = Bitmap.createBitmap(imageBitmap!!, crop, 0, height, height)
         }
-    }
-
-    fun dec_N(view: View?) {
-        PuzzleBoard.Companion.NUM_TILES++
-    }
-
-    fun inc_N(view: View?) {
-        PuzzleBoard.Companion.NUM_TILES--
     }
 
     companion object {

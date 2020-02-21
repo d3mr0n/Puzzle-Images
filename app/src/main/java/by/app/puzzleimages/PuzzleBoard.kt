@@ -2,16 +2,19 @@ package by.app.puzzleimages
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.util.Log
 import java.util.*
 
 class PuzzleBoard {
     private var tiles: ArrayList<PuzzleTile?>? =
         ArrayList()
     private var steps = 0
+    private val LOG_TAG = "DLG"
     var previousBoard: PuzzleBoard? = null
 
     internal constructor(bitmap: Bitmap?, parentWidth: Int) {
         var bitmap = bitmap
+        Log.d(LOG_TAG, "" + bitmap?.getWidth());
         bitmap = Bitmap.createScaledBitmap(bitmap!!, parentWidth, parentWidth, false)
         val tileWidthAndHeight =
             bitmap.width / NUM_TILES
