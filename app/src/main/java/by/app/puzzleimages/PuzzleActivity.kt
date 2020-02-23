@@ -76,7 +76,12 @@ class PuzzleActivity : AppCompatActivity() {
             try {
                 while (!this.isInterrupted) {
                     sleep(500)
-                    runOnUiThread { score_count.text = "" + score }
+                    runOnUiThread {
+                        score_count.text = "" + score
+                        if (score_count.text.length >= high_score.text.length) {
+                            high_score.text = score_count.text
+                        }
+                    }
                 }
             } catch (e: InterruptedException) {
             }
