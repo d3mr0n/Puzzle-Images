@@ -14,26 +14,26 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val notificationManager =
             context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val repeating_intent = Intent(context, MainActivity::class.java)
-        repeating_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val repeatingIntent = Intent(context, MainActivity::class.java)
+        repeatingIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         val pendingIntent = PendingIntent.getActivity(
             context,
             100,
-            repeating_intent,
+            repeatingIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
-        val notification_title: String =
-            context.getResources().getString(by.app.puzzleimages.R.string.notification_title)
-        val notification_summary: String =
-            context.getResources().getString(by.app.puzzleimages.R.string.notification_summary)
+        val notificationTitle: String =
+            context.resources.getString(by.app.puzzleimages.R.string.notification_title)
+        val notificationSummary: String =
+            context.resources.getString(by.app.puzzleimages.R.string.notification_summary)
         val builder = NotificationCompat.Builder(context)
         builder.setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setWhen(System.currentTimeMillis())
             .setSmallIcon(R.drawable.ic_lock_lock)
-            .setContentTitle(notification_title)
+            .setContentTitle(notificationTitle)
             .setContentIntent(pendingIntent)
-            .setContentText(notification_summary)
+            .setContentText(notificationSummary)
 //            .setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_LIGHTS)
             .setDefaults(Notification.DEFAULT_SOUND)
             .setContentInfo("Info")

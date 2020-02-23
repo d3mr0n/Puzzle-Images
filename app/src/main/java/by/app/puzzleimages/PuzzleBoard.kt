@@ -94,13 +94,13 @@ open class PuzzleBoard {
         for (delta in NEIGHBOUR_COORDS) {
             val nullX = tileX + delta[0]
             val nullY = tileY + delta[1]
-            if (nullX in 0 until NUM_TILES && nullY >= 0 && nullY < NUM_TILES && tiles!![XYtoIndex(
+            if (nullX in 0 until NUM_TILES && nullY >= 0 && nullY < NUM_TILES && tiles!![xyToIndex(
                     nullX,
                     nullY
                 )] == null
             ) {
                 score++
-                swapTiles(XYtoIndex(nullX, nullY), XYtoIndex(tileX, tileY))
+                swapTiles(xyToIndex(nullX, nullY), xyToIndex(tileX, tileY))
                 return true
             }
         }
@@ -115,7 +115,7 @@ open class PuzzleBoard {
         return true
     }
 
-    private fun XYtoIndex(x: Int, y: Int): Int {
+    private fun xyToIndex(x: Int, y: Int): Int {
         return x + y * NUM_TILES
     }
 

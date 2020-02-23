@@ -16,11 +16,11 @@ class PuzzleBoardView(context: Context?) : View(context) {
     private var puzzleBoard: PuzzleBoard? = null
     private var animation: ArrayList<PuzzleBoard>?
     private val random = Random()
-    private var count_solve = 0
-    var image_width = 0
+    private var countSolve = 0
+    var imageWidth = 0
     fun initialize(imageBitmap: Bitmap?) {
         val width = width
-        image_width = width + (width / 21)
+        imageWidth = width + (width / 21)
         puzzleBoard = PuzzleBoard(imageBitmap, width)
         refreshScreen()
     }
@@ -29,7 +29,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
         super.onDraw(canvas)
         if (puzzleBoard != null) {
             if (animation != null && animation!!.size > 0) {
-                count_solve++
+                countSolve++
                 score = 0
                 puzzleBoard = animation!!.removeAt(0)
                 puzzleBoard!!.draw(canvas)
@@ -39,10 +39,10 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     Toast.makeText(
                         activity,
                         "        Solved!" + "\n" +
-                                "Solution steps: ${count_solve - 1}",
+                                "Solution steps: ${countSolve - 1}",
                         Toast.LENGTH_LONG
                     ).show()
-                    count_solve = 0
+                    countSolve = 0
                 } else {
                     this.postInvalidateDelayed(500)
                 }

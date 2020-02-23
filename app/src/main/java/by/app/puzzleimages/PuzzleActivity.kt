@@ -63,8 +63,8 @@ class PuzzleActivity : AppCompatActivity() {
             cropImageToSquare()
             boardView!!.initialize(imageBitmap)
 
-            img.getLayoutParams().height = boardView!!.image_width
-            Log.d("Width", "" + boardView!!.image_width)
+            img.layoutParams.height = boardView!!.imageWidth
+            Log.d("Width", "" + boardView!!.imageWidth)
             img.requestLayout()
         }, 10)
     }
