@@ -55,12 +55,17 @@ class PuzzleActivity : AppCompatActivity() {
         countScore.start()
     }
 
-    // This add local app image to Puzzle to RelativeLayout
+    // This will add local image of app to puzzle Relativelayout
+    // as well as the background and frame of puzzles
     private fun putImagePuzzle() {
         Handler().postDelayed({
             imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.img)
             cropImageToSquare()
             boardView!!.initialize(imageBitmap)
+
+            img.getLayoutParams().height = boardView!!.image_width
+            Log.d("Width", "" + boardView!!.image_width)
+            img.requestLayout()
         }, 10)
     }
 
@@ -126,7 +131,7 @@ class PuzzleActivity : AppCompatActivity() {
 
     // Show Dialog of all results
     @SuppressLint("InflateParams")
-    fun highScoreView() {
+    fun highScoreView(view: View) {
         val inflater =
             getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.dialog_result, null)

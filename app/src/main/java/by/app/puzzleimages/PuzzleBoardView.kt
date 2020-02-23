@@ -11,15 +11,16 @@ import android.widget.Toast
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import java.util.*
 
-
 class PuzzleBoardView(context: Context?) : View(context) {
     private val activity: Activity? = context as Activity?
     private var puzzleBoard: PuzzleBoard? = null
     private var animation: ArrayList<PuzzleBoard>?
     private val random = Random()
     private var count_solve = 0
+    var image_width = 0
     fun initialize(imageBitmap: Bitmap?) {
         val width = width
+        image_width = width + (width / 21)
         puzzleBoard = PuzzleBoard(imageBitmap, width)
         refreshScreen()
     }
@@ -38,7 +39,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     Toast.makeText(
                         activity,
                         "        Solved!" + "\n" +
-                                "Solution steps: ${count_solve-1}",
+                                "Solution steps: ${count_solve - 1}",
                         Toast.LENGTH_LONG
                     ).show()
                     count_solve = 0

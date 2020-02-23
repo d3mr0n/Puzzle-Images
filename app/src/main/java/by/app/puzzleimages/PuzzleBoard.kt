@@ -2,43 +2,42 @@ package by.app.puzzleimages
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.util.Log
 import java.util.*
 import kotlin.math.abs
 
-@Suppress("NAME_SHADOWING")
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "NAME_SHADOWING")
 open class PuzzleBoard {
     private var tiles: ArrayList<PuzzleTile?>? =
         ArrayList()
     private var steps = 0
-    private val LOG_TAG = "DLG"
     var previousBoard: PuzzleBoard? = null
 
     internal constructor(bitmap: Bitmap?, parentWidth: Int) {
         var bitmap = bitmap
-        Log.d(LOG_TAG, "" + bitmap?.width);
         bitmap = Bitmap.createScaledBitmap(bitmap!!, parentWidth, parentWidth, false)
         val tileWidthAndHeight =
             bitmap.width / NUM_TILES
-        for (i in 0 until NUM_TILES) for (j in 0 until NUM_TILES) {
-            val yStart = i * tileWidthAndHeight
-            val xStart = j * tileWidthAndHeight
-            val b = Bitmap.createBitmap(
-                bitmap,
-                xStart,
-                yStart,
-                tileWidthAndHeight,
-                tileWidthAndHeight
-            )
-            if (i == NUM_TILES - 1 && j == NUM_TILES - 1) {
-                tiles!!.add(null)
-            } else {
-                tiles!!.add(
-                    PuzzleTile(
-                        b,
-                        i * NUM_TILES + j
-                    )
+        for (i in 0 until NUM_TILES) {
+            for (j in 0 until NUM_TILES) {
+                val yStart = i * tileWidthAndHeight
+                val xStart = j * tileWidthAndHeight
+                val b = Bitmap.createBitmap(
+                    bitmap,
+                    xStart,
+                    yStart,
+                    tileWidthAndHeight,
+                    tileWidthAndHeight
                 )
+                if (i == NUM_TILES - 1 && j == NUM_TILES - 1) {
+                    tiles!!.add(null)
+                } else {
+                    tiles!!.add(
+                        PuzzleTile(
+                            b,
+                            i * NUM_TILES + j
+                        )
+                    )
+                }
             }
         }
     }
@@ -180,8 +179,12 @@ open class PuzzleBoard {
     }
 
     fun sameStateAs(otherBoard: PuzzleBoard?): Boolean {
-        for (i in tiles!!.indices) if (tiles!![i] != null && otherBoard!!.tiles!![i] != null) if (tiles!![i]!!.number != otherBoard.tiles!![i]!!.getNumber()) {
-            return false
+        for (i in tiles!!.indices) {
+            if (tiles!![i] != null && otherBoard!!.tiles!![i] != null) {
+                if (tiles!![i]!!.number != otherBoard.tiles!![i]!!.number) {
+                    return false
+                }
+            }
         }
         return true
     }

@@ -7,11 +7,11 @@
     android:paddingBottom="@dimen/activity_vertical_margin">
 
     <FrameLayout
-        android:onClick="highScoreView"
         android:id="@+id/high_score_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:onClick="highScoreView"
         android:paddingTop="30dp"
         android:paddingRight="4dp">
 
@@ -72,19 +72,24 @@
             android:textStyle="bold" />
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/shape_puzzle" />
+
     <RelativeLayout
         android:id="@+id/puzzle_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="114dp"
+        android:paddingTop="124dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         tools:context=".PuzzleActivity">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/crop__selector_pressed" />
 
     </RelativeLayout>
 </RelativeLayout>
