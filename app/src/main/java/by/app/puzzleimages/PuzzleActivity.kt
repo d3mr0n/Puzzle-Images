@@ -149,43 +149,7 @@ class PuzzleActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    // Take Picture from Camera
-    private fun dispatchTakeCamera() {
-        val takePicIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePicIntent.resolveActivity(packageManager) != null) {
-            try {
-                photo = createImageFile()
-            } catch (ex: IOException) {
-                Log.v(
-                    TAG,
-                    "Couldn't create File photo :",
-                    ex
-                )
-            }
-            if (photo != null) {
-                photoURI = Uri.fromFile(photo)
-                takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(
-                    takePicIntent,
-                    REQUEST_IMAGE_CAPTURE
-                )
-            }
-        }
-    }
-
-    // Take Picture from Gallery
-    private fun dispatchTakeGallery() {
-        val takePicIntent =
-            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        if (takePicIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(
-                takePicIntent,
-                PICK_IMAGE_REQUEST
-            )
-        }
-    }
-
-    // Call
+    // Call activity for camera or gallery
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -208,6 +172,38 @@ class PuzzleActivity : AppCompatActivity() {
             }
             cropImageToSquare()
             boardView!!.initialize(imageBitmap)
+        }
+    }
+
+    // Take Picture from Camera
+    private fun dispatchTakeCamera() {
+        val takePicIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePicIntent.resolveActivity(packageManager) != null) {
+            try {
+                photo = createImageFile()
+            } catch (ex: IOException) {
+                Log.v(TAG, "Couldn't create File photo :", ex)
+            }
+            if (photo != null) {
+//                    photoURI = Uri.fromFile(photo)
+//                    takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(
+                    takePicIntent,
+                    REQUEST_IMAGE_CAPTURE
+                )
+            }
+        }
+    }
+
+    // Take Picture from Gallery
+    private fun dispatchTakeGallery() {
+        val takePicIntent =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if (takePicIntent.resolveActivity(packageManager) != null) {
+            startActivityForResult(
+                takePicIntent,
+                PICK_IMAGE_REQUEST
+            )
         }
     }
 
