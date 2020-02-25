@@ -1,6 +1,7 @@
 package by.app.puzzleimages
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -270,6 +271,30 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     companion object {
+        // Showing when game is solved
+        fun continueGame(context: Context) {
+            val gameSolved = AlertDialog.Builder(context)
+            with(gameSolved) {
+                gameSolved.setCancelable(false)
+                setTitle("Игра окончена")
+                setMessage(
+                    "Поздравляем! Вы собрали мозаику!\n" +
+                            "Затраченных шагов: " + score +
+                            "\nПопробовать снова?"
+                )
+                setNegativeButton("Нет") { _, _ ->
+                    val intent = Intent(context, MainActivity::class.java)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(intent)
+                    score = 0
+                }
+                setPositiveButton("Да") { _, _ ->
+                    score = 0
+                }
+                show()
+            }
+        }
+
         private const val TAG = "PuzzleActivity"
         const val REQUEST_IMAGE_CAPTURE = 1
         const val PICK_IMAGE_REQUEST = 2

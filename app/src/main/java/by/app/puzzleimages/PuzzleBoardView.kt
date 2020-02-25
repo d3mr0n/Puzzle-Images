@@ -8,6 +8,7 @@ import android.graphics.Canvas
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import by.app.puzzleimages.PuzzleActivity.Companion.continueGame
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import java.util.*
 
@@ -73,8 +74,9 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     invalidate()
                     if (puzzleBoard!!.resolved()) {
                         val toast =
-                            Toast.makeText(activity, "Congratulations!", Toast.LENGTH_LONG)
+                            Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT)
                         toast.show()
+                        continueGame(context)
                     }
                     return true
                 }
