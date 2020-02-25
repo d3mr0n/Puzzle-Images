@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
@@ -77,6 +78,8 @@ class PuzzleBoardView(context: Context?) : View(context) {
                             Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT)
                         toast.show()
                         continueGame(context)
+                    } else {
+                        soundClick()
                     }
                     return true
                 }
@@ -125,6 +128,11 @@ class PuzzleBoardView(context: Context?) : View(context) {
     private fun refreshScreen() {
         puzzleBoard!!.reset()
         invalidate()
+    }
+
+    private fun soundClick() {
+        val ring = MediaPlayer.create(context, R.raw.sound_chip)
+        ring.start()
     }
 
     companion object {
