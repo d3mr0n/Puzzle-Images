@@ -60,7 +60,7 @@ class PuzzleActivity : AppCompatActivity() {
     // as well as the background and frame of puzzles
     private fun putImagePuzzle() {
         Handler().postDelayed({
-            imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.img)
+            imageCheckNumTiles()
             cropImageToSquare()
             boardView!!.initialize(imageBitmap)
 
@@ -68,6 +68,15 @@ class PuzzleActivity : AppCompatActivity() {
             Log.d("Width", "" + boardView!!.imageWidth)
             img.requestLayout()
         }, 10)
+    }
+
+    private fun imageCheckNumTiles() {
+        when(PuzzleBoard.NUM_TILES) {
+            3 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_three)
+            4 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_four)
+            5 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_five)
+            6 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_six)
+        }
     }
 
     // Counting Score of tile moves

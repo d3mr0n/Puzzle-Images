@@ -49,14 +49,14 @@
                 android:paddingLeft="8dp"
                 android:text="Размер"
                 android:textColor="#464343"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TextView_item_name"
                 android:text="Шаги"
                 android:textColor="#464343"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -65,115 +65,67 @@
             android:id="@+id/tableRow_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E0E0E0"
             android:gravity="center">
 
             <TextView
                 android:id="@+id/TextView_serial_no"
+                android:background="#FAFAFA"
                 android:paddingLeft="8dp"
                 android:text="3x3"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/TextView_item"
                 android:text="284"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FAFAFA"
+            android:background="#E0E0E0"
             android:gravity="center">
 
             <TextView
                 android:paddingLeft="8dp"
                 android:text="4x4"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:text="24"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E0E0E0"
+            android:background="#FAFAFA"
             android:gravity="center">
 
             <TextView
                 android:paddingLeft="8dp"
                 android:text="5x5"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:text="284"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FAFAFA"
+            android:background="#E0E0E0"
             android:gravity="center">
 
             <TextView
                 android:paddingLeft="8dp"
                 android:text="6x6"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:text="24"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#E0E0E0"
-            android:gravity="center">
-
-            <TextView
-                android:paddingLeft="8dp"
-                android:text="7x7"
-                android:textSize="16sp" />
-
-            <TextView
-                android:text="284"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FAFAFA"
-            android:gravity="center">
-
-            <TextView
-                android:paddingLeft="8dp"
-                android:text="8x8"
-                android:textSize="16sp" />
-
-            <TextView
-                android:text="24"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#E0E0E0"
-            android:gravity="center">
-
-            <TextView
-                android:paddingLeft="8dp"
-                android:text="9x9"
-                android:textSize="16sp" />
-
-            <TextView
-                android:text="284"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </TableRow>
     </TableLayout>
 
@@ -188,8 +140,8 @@
         android:layout_toStartOf="@+id/btn_close_result"
         android:layout_toLeftOf="@+id/btn_close_result"
         android:text="Сбросить"
-        android:textSize="15sp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/btn_close_result"
@@ -200,7 +152,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
         android:text="Закрыть"
-        android:textSize="15sp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
 
 </RelativeLayout>

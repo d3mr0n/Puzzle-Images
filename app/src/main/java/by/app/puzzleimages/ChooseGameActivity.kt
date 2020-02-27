@@ -15,14 +15,12 @@ class ChooseGameActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun onClick(v: View) {
+    fun onClickCard(v: View) {
         when (v.id) {
-            R.id.area0 -> PuzzleBoard.NUM_TILES = 3
-            R.id.area -> PuzzleBoard.NUM_TILES = 4
-            R.id.weight -> PuzzleBoard.NUM_TILES = 5
-            R.id.currency -> PuzzleBoard.NUM_TILES = 6
-            R.id.temperature -> PuzzleBoard.NUM_TILES = 7
-            R.id.power -> PuzzleBoard.NUM_TILES = 8
+            R.id.threeCardId -> PuzzleBoard.NUM_TILES = 3
+            R.id.fourCardId -> PuzzleBoard.NUM_TILES = 4
+            R.id.fiveCardId -> PuzzleBoard.NUM_TILES = 5
+            R.id.sixCardId -> PuzzleBoard.NUM_TILES = 6
         }
         startActivity(Intent(this, PuzzleActivity::class.java))
     }
