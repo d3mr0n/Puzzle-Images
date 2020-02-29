@@ -24,6 +24,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.exifinterface.media.ExifInterface
 import androidx.exifinterface.media.ExifInterface.*
+import androidx.preference.PreferenceManager
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import kotlinx.android.synthetic.main.activity_game.*
 import java.io.File
@@ -255,16 +256,23 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     // Make sure photos aren't being needlessly persistently kept in phone storage:
+    // With checking checkbox in settings
     private fun deletePicHistory() {
-        val dir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES) ?: return
-        val path = dir.toString()
-        Log.d("Files", "Path: $path")
-        val f = File(path)
-        val files = f.listFiles()
-        Log.d("Files", "Size: " + files.size)
-        for (file in files) {
-            Log.d("Files", "FileName: " + file.name)
-            file.delete()
+        if (PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean(
+                "picture_history_switch",
+                true
+            )
+        ) {
+            val dir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES) ?: return
+            val path = dir.toString()
+            Log.d("Files", "Path: $path")
+            val f = File(path)
+            val files = f.listFiles()
+            Log.d("Files", "Size: " + files.size)
+            for (file in files) {
+                Log.d("Files", "FileName: " + file.name)
+                file.delete()
+            }
         }
     }
 
