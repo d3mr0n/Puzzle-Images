@@ -30,7 +30,7 @@ import java.io.IOException
 
 @Suppress(
     "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION", "NAME_SHADOWING",
-    "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+    "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "UNUSED_PARAMETER"
 )
 class PuzzleActivity : AppCompatActivity() {
     private var doubleBackToExitPressedOnce = false
@@ -69,7 +69,7 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     private fun imageCheckNumTiles() {
-        when(PuzzleBoard.NUM_TILES) {
+        when (PuzzleBoard.NUM_TILES) {
             3 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_three)
             4 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_four)
             5 -> imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.tiles_five)
@@ -105,7 +105,7 @@ class PuzzleActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(
             this,
-            "Please click BACK again to exit\nThe game will be reset!",
+            R.string.hold_back,
             Toast.LENGTH_SHORT
         ).show()
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
