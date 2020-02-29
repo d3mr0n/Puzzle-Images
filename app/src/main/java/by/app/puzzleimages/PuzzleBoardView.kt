@@ -2,14 +2,17 @@ package by.app.puzzleimages
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.media.MediaPlayer
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import by.app.puzzleimages.PuzzleActivity.Companion.continueGame
+import by.app.puzzleimages.PuzzleActivity.Companion.imageBitmap
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import java.util.*
 
@@ -19,6 +22,8 @@ class PuzzleBoardView(context: Context?) : View(context) {
     private var animation: ArrayList<PuzzleBoard>?
     private val random = Random()
     private var countSolve = 0
+    private var qapSecMax = 3
+    private var gapSec = 0
     var imageWidth = 0
     fun initialize(imageBitmap: Bitmap?) {
         val width = width
@@ -78,7 +83,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
                         val toast =
                             Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT)
                         toast.show()
-                        continueGame(context)
+                        endGame(context)
                     } else {
                         soundClick()
                     }
@@ -89,6 +94,33 @@ class PuzzleBoardView(context: Context?) : View(context) {
         return super.onTouchEvent(event)
     }
 
+    // Showing when game is solved
+    @SuppressLint("StringFormatInvalid", "StringFormatMatches")
+    private fun endGame(context: Context) {
+        val gameSolved = AlertDialog.Builder(context)
+        with(gameSolved) {
+            gameSolved.setCancelable(false)
+            setTitle(R.string.game_end_title)
+            if (gapSec >= qapSecMax) {
+                setMessage(R.string.game_solved_failed)
+            } else if (puzzleBoard!!.resolved()) {
+                val text: String =
+                    String.format(resources.getString(R.string.game_solved_success), score)
+                setMessage(text)
+            }
+            score = 0
+            setNegativeButton(R.string.no) { _, _ ->
+                val intent = Intent(context, MainActivity::class.java)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+            }
+            setPositiveButton(R.string.yes) { _, _ ->
+                initialize(imageBitmap)
+            }
+            show()
+        }
+    }
+
     fun solve() {
         val boards =
             PriorityQueue(
@@ -96,7 +128,23 @@ class PuzzleBoardView(context: Context?) : View(context) {
                 COMPARATOR
             )
         boards.add(puzzleBoard)
+
+        var gapSecBegin = Calendar.getInstance().timeInMillis / 1000
         while (boards.size != 0) {
+            val gapSecThis = Calendar.getInstance().timeInMillis / 1000
+            if (gapSecThis - gapSecBegin >= 1) {
+                gapSec += 1
+                gapSecBegin = gapSecThis
+            }
+            if (gapSec >= qapSecMax) {
+                Log.d("timeOut", "Time out, maximum time: $qapSecMax")
+                Toast.makeText(context, "Wooops... Sorry...", Toast.LENGTH_SHORT).show()
+                endGame(context)
+                qapSecMax = 3
+                gapSec = 0
+                break
+            }
+
             val retrievedBoard = boards.poll()
             if (!retrievedBoard!!.resolved()) {
                 addNeighbours(boards, retrievedBoard)
