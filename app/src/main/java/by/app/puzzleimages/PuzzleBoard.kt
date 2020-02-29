@@ -5,7 +5,9 @@ import android.graphics.Canvas
 import java.util.*
 import kotlin.math.abs
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "NAME_SHADOWING")
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "NAME_SHADOWING", "UNCHECKED_CAST",
+    "EqualsOrHashCode"
+)
 open class PuzzleBoard {
     private var tiles: ArrayList<PuzzleTile?>? =
         ArrayList()
@@ -120,7 +122,7 @@ open class PuzzleBoard {
     }
 
     private fun swapTiles(i: Int, j: Int) {
-        val temp = tiles!![i]
+        val temp: PuzzleTile? = tiles!![i]
         tiles!![i] = tiles!![j]
         tiles!![j] = temp
     }

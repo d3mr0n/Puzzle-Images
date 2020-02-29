@@ -7,12 +7,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.ExifInterface
-import android.media.ExifInterface.*
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
+import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +22,8 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.exifinterface.media.ExifInterface
+import androidx.exifinterface.media.ExifInterface.*
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import kotlinx.android.synthetic.main.activity_game.*
 import java.io.File
@@ -41,6 +42,9 @@ class PuzzleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        // This fix camera launch for some api levels
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
         // This code programmatically adds the PuzzleBoardView to the UI.
         val container = findViewById<RelativeLayout>(R.id.puzzle_container)
         boardView = PuzzleBoardView(this)
@@ -193,8 +197,8 @@ class PuzzleActivity : AppCompatActivity() {
                 Log.v(TAG, "Couldn't create File photo :", ex)
             }
             if (photo != null) {
-//                    photoURI = Uri.fromFile(photo)
-//                    takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    photoURI = Uri.fromFile(photo)
+                    takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 startActivityForResult(
                     takePicIntent,
                     REQUEST_IMAGE_CAPTURE
@@ -226,7 +230,7 @@ class PuzzleActivity : AppCompatActivity() {
     // In either case, rotate them appropriately. Code taken from StackOverflow.
     @Throws(IOException::class)
     private fun rotateImageIfRequired(image: Bitmap?, imageUri: Uri?): Bitmap? {
-        val ei = ExifInterface(imageUri!!.path)
+        val ei = ExifInterface(imageUri!!.path!!)
         val orientation = ei.getAttributeInt(
             TAG_ORIENTATION,
             ORIENTATION_NORMAL
