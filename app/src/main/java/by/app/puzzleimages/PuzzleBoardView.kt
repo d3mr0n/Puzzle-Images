@@ -28,7 +28,11 @@ class PuzzleBoardView(context: Context?) : View(context) {
     fun initialize(imageBitmap: Bitmap?) {
         val width = width
         imageWidth = width + (width / 21)
-        puzzleBoard = PuzzleBoard(imageBitmap, width)
+        puzzleBoard = if (PuzzleBoard.NUM_TILES == 6) {
+            PuzzleBoard(imageBitmap, width + (width / 180))
+        } else {
+            PuzzleBoard(imageBitmap, width)
+        }
         refreshScreen()
     }
 
