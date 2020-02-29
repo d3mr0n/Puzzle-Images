@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/backgroundColor"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -11,11 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape_main"
+        android:onClick="btnClick"
         android:shadowColor="#ffa8a8a8"
         android:shadowDx="0.0"
         android:shadowDy="0.0"
         android:shadowRadius="5.0"
-        android:text="Играть"
+        android:text="@string/play"
         android:textColor="#ffffffff"
         android:textSize="18.0sp" />
 
@@ -25,11 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10.0dip"
         android:background="@drawable/button_shape_main"
+        android:onClick="btnClick"
         android:shadowColor="#ffa8a8a8"
         android:shadowDx="0.0"
         android:shadowDy="0.0"
         android:shadowRadius="5.0"
-        android:text="Результаты"
+        android:text="@string/results"
         android:textColor="#ffffffff"
         android:textSize="18.0sp" />
 
@@ -39,11 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10.0dip"
         android:background="@drawable/button_shape_main"
+        android:onClick="btnClick"
         android:shadowColor="#ffa8a8a8"
         android:shadowDx="0.0"
         android:shadowDy="0.0"
         android:shadowRadius="5.0"
-        android:text="Настройки"
+        android:text="@string/settings"
         android:textColor="#ffffffff"
         android:textSize="18.0sp" />
 
@@ -53,11 +56,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10.0dip"
         android:background="@drawable/button_shape_main"
+        android:onClick="btnClick"
         android:shadowColor="#ffa8a8a8"
         android:shadowDx="0.0"
         android:shadowDy="0.0"
         android:shadowRadius="5.0"
-        android:text="Помощь"
+        android:text="@string/help"
         android:textColor="#ffffffff"
         android:textSize="18.0sp" />
 
@@ -67,11 +71,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10.0dip"
         android:background="@drawable/button_shape_main"
+        android:onClick="btnClick"
         android:shadowColor="#ffa8a8a8"
         android:shadowDx="0.0"
         android:shadowDy="0.0"
         android:shadowRadius="5.0"
-        android:text="Выход"
+        android:text="@string/exit"
         android:textColor="#ffffffff"
         android:textSize="18.0sp" />
 </LinearLayout>

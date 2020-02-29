@@ -40,9 +40,10 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     puzzleBoard!!.reset()
                     Toast.makeText(
                         activity,
-                        "        Solved!" + "\n" +
-                                "Solution steps: ${countSolve - 1}",
-                        Toast.LENGTH_LONG
+                        String.format(
+                            resources.getString(R.string.solution_steps),
+                            countSolve - 1
+                        ), Toast.LENGTH_LONG
                     ).show()
                     countSolve = 0
                 } else {

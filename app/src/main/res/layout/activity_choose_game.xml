@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@color/backgroundColor"
     android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
@@ -16,38 +16,39 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/threeCardId"
-            android:layout_width="160dp"
-            android:layout_height="260dp"
-            android:layout_margin="6dp"
+            android:layout_width="160.0dip"
+            android:layout_height="260.0dip"
+            android:layout_margin="6.0dip"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:foreground="?android:selectableItemBackground"
             android:onClick="onClickCard">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="120.0dip"
+                    android:layout_height="120.0dip"
                     android:background="@drawable/tiles_three"
-                    android:padding="10dp" />
+                    android:padding="10.0dip"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Размер 3x3"
-                    android:textSize="16sp"
+                    android:layout_marginTop="10.0dip"
+                    android:text="@string/size_three"
+                    android:textSize="16.0sp"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="10.0dip"
                     android:background="@color/lightGray" />
 
                 <TextView
@@ -55,168 +56,163 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рекорд: 0"
+                    android:text="@string/high_score_choose_game"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="16sp" />
-
+                    android:textSize="16.0sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
         <android.support.v7.widget.CardView
             android:id="@+id/fourCardId"
-            android:layout_width="160dp"
-            android:layout_height="260dp"
-            android:layout_margin="6dp"
+            android:layout_width="160.0dip"
+            android:layout_height="260.0dip"
+            android:layout_margin="6.0dip"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:foreground="?android:selectableItemBackground"
             android:onClick="onClickCard">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="120.0dip"
+                    android:layout_height="120.0dip"
                     android:background="@drawable/tiles_four"
-                    android:padding="10dp" />
+                    android:padding="10.0dip"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Размер 4x4"
-                    android:textSize="16sp"
+                    android:layout_marginTop="10.0dip"
+                    android:text="@string/size_four"
+                    android:textSize="16.0sp"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="10.0dip"
                     android:background="@color/lightGray" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рекорд: 0"
+                    android:text="@string/high_score_choose_game"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="16sp" />
-
+                    android:textSize="16.0sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
+        android:layout_marginLeft="14.0dip"
+        android:layout_marginRight="14.0dip"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
             android:id="@+id/fiveCardId"
-            android:layout_width="160dp"
-            android:layout_height="260dp"
-            android:layout_margin="6dp"
+            android:layout_width="160.0dip"
+            android:layout_height="260.0dip"
+            android:layout_margin="6.0dip"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:foreground="?android:selectableItemBackground"
             android:onClick="onClickCard">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="120.0dip"
+                    android:layout_height="120.0dip"
                     android:background="@drawable/tiles_five"
-                    android:padding="10dp" />
+                    android:padding="10.0dip"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Размер 5x5"
-                    android:textSize="16sp"
+                    android:layout_marginTop="10.0dip"
+                    android:text="@string/size_five"
+                    android:textSize="16.0sp"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="10.0dip"
                     android:background="@color/lightGray" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Рекорд: 0"
+                    android:padding="5.0dip"
+                    android:text="@string/high_score_choose_game"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="16sp" />
-
+                    android:textSize="16.0sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/sixCardId"
-            android:layout_width="160dp"
-            android:layout_height="260dp"
-            android:layout_margin="6dp"
+            android:layout_width="160.0dip"
+            android:layout_height="260.0dip"
+            android:layout_margin="6.0dip"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:foreground="?android:selectableItemBackground"
             android:onClick="onClickCard">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="120.0dip"
+                    android:layout_height="120.0dip"
                     android:background="@drawable/tiles_six"
-                    android:padding="10dp" />
+                    android:padding="10.0dip"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Размер 6x6"
-                    android:textSize="16sp"
+                    android:layout_marginTop="10.0dip"
+                    android:text="@string/size_six"
+                    android:textSize="16.0sp"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="10.0dip"
                     android:background="@color/lightGray" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Рекорд: 0"
+                    android:padding="5.0dip"
+                    android:text="@string/high_score_choose_game"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="16sp" />
-
+                    android:textSize="16.0sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
     </LinearLayout>
 </LinearLayout>

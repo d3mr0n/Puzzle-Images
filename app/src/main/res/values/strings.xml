@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Puzzle Images</string>
+    <string name="title_game">Puzzle</string>
     <string name="title_activity_settings">Настройки игры</string>
-    <string name="title_game_settings">Puzzle</string>
     <string name="title_choose_level">Выбор уровня</string>
-    <string name="game_size">Размерность поля</string>
-    <string name="help_text">Здесь должен быть какой-то текст справки по игре…</string>
     <string name="help_title">Помощь</string>
+    <string name="help_text">Известная игра из серии головоломок.
+        Имеются поля с размерами 3x3, 4x4, 5x5, 6x6, в которых по умолчанию расположены фишки,
+        пронумерованные числами от 1 до 8, от 1 до 15, от 1 до 24, от 1 до 35 соответственно.
+        Помимо стандартных фишек можно использовать свои изображения.
+        Игрок может перемещать фишки в поле за счет свободной ячейки.
+        \nЦель игры — собрать фишки в поле с номерами по порядку,
+        используя как можно меньше число ходов.</string>
+    <string name="app_exit">Приложение закрыто…</string>
     <string name="close">Закрыть</string>
-    <string-array name="game_size_choose">
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
-    <string-array name="game_size_code">
-        <item>3x3</item>
-        <item>4x4</item>
-        <item>5x5</item>
-        <item>6x6</item>
-        <item>7x7</item>
-        <item>8x8</item>
-        <item>9x9</item>
-        <item>10x10</item>
-    </string-array>
+    <string name="reset">Сбросить</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
     <string name="notification_title">Мы скучали…</string>
     <string name="notification_summary">Возвращайтесь и продолжите игру</string>
+    <string name="game_settings">Настройки игры</string>
     <string name="notify_settings_title">Включить уведомление</string>
     <string name="notify_settings_summary">Напоминание о игре каждый день</string>
-    <string name="game_settings">Настройки игры</string>
     <string name="sound_summary_off">Звуковые эфекты игры включены</string>
     <string name="sound_summary_on">Звуковые эфекты игры выключены</string>
     <string name="sound_title">Звук игры</string>
-    <string name="seek_game_sound">Громкость звука игры</string>
-    <string name="seek_speed_move">Скорость пермещения фишек</string>
+    <string name="picture_history_summary">Сохранение фотографий камеры в памяти сделаных
+        через приложение</string>
+    <string name="picture_history_title">Сохранение фотографий</string>
+    <string name="solve_puzzle">Собрать паззл</string>
+    <string name="shuffle_puzzle">Shuffle</string>
+    <string name="take_gallery">Take Gallery</string>
+    <string name="take_camera">Take Camera</string>
+    <string name="best_results">Лучшие результаты:</string>
+    <string name="game_end_title">Игра окончена</string>
+    <string name="game_solved_failed">Печалька!
+        Игру даже не удается завершить авторешением!\nНе стоило так усердно перемешивать :)\n
+        \nПопробовать снова?</string>
+    <string name="game_solved_success">Поздравляем!
+        Вы собрали мозаику!\nЗатраченных шагов: %1$s\n\nПопробовать снова?</string>
+    <string name="hold_back">Нажмите еще раз для выхода\n     \t\t\tИгра будет потеряна!</string>
+    <string name="solution_steps">\t\t\t\tSolved!\nSolution steps: %1$s</string>
+    <string name="size">Размер</string>
+    <string name="score">Очки</string>
+    <string name="exit">Выход</string>
+    <string name="help">Помощь</string>
+    <string name="settings">Настройки</string>
+    <string name="results">Результаты</string>
+    <string name="play">Играть</string>
+    <string name="high_score">Рекорд</string>
+    <string name="high_score_choose_game">Рекорд: </string>
+    <string name="size_three">Размер 3x3</string>
+    <string name="size_four">Размер 4x4</string>
+    <string name="size_five">Размер 5x5</string>
+    <string name="size_six">Размер 6x6</string>
 </resources>

@@ -9,4 +9,15 @@
     <color name="backgroundColor">#F3F1F1</color>
     <color name="darkBlue">#23283A</color>
     <color name="lightGray">#ededed</color>
+
+    <!-- Brown colors -->
+    <color name="material_brown_100">#ffd7ccc8</color>
+    <color name="material_brown_200">#ffbcaaa4</color>
+    <color name="material_brown_300">#ffa1887f</color>
+    <color name="material_brown_400">#ff8d6e63</color>
+    <color name="material_brown_500">#ff795548</color>
+    <color name="material_brown_600">#ff6d4c41</color>
+    <color name="material_brown_700">#ff5d4037</color>
+    <color name="material_brown_800">#ff4e342e</color>
+    <color name="material_brown_900">#ff3e2723</color>
 </resources>
