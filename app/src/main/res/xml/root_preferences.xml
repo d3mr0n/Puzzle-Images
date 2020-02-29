@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/title_choose_level">
+        app:title="@string/title_activity_settings">
         <SwitchPreference
             android:defaultValue="false"
             android:key="notifications_switch"
@@ -11,45 +11,20 @@
             android:title="@string/notify_settings_title"
             app:allowDividerBelow="true"
             app:iconSpaceReserved="false" />
-
         <SwitchPreferenceCompat
             android:defaultValue="true"
-            android:summaryOff="@string/sound_summary_off"
-            android:summaryOn="@string/sound_summary_on"
+            android:summaryOff="@string/sound_summary_on"
+            android:summaryOn="@string/sound_summary_off"
             app:allowDividerBelow="true"
             app:iconSpaceReserved="false"
             app:key="sound_switch"
             app:title="@string/sound_title" />
-        <SeekBarPreference
-            android:defaultValue="1"
-            android:key="sound_control"
-            android:max="10"
-            android:title="@string/seek_game_sound"
-            app:allowDividerAbove="true"
-            app:allowDividerBelow="true"
-            app:dependency="sound_switch"
-            app:iconSpaceReserved="false"
-            app:min="1"
-            app:showSeekBarValue="true" />
-        <SeekBarPreference
-            android:defaultValue="0"
-            android:key="speed_move"
-            android:max="10"
-            android:title="@string/seek_speed_move"
-            app:allowDividerAbove="true"
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summary="@string/picture_history_summary"
             app:allowDividerBelow="true"
             app:iconSpaceReserved="false"
-            app:showSeekBarValue="true" />
-        <ListPreference
-            android:defaultValue="4"
-            android:dialogTitle="Выберите размерность поля"
-            android:entries="@array/game_size_code"
-            android:entryValues="@array/game_size_choose"
-            android:key="game_size"
-            android:summary="Позволяет изменить размер игрового поля во время игры"
-            app:allowDividerAbove="true"
-            app:allowDividerBelow="true"
-            app:iconSpaceReserved="false"
-            app:title="@string/game_size" />
+            app:key="picture_history_switch"
+            app:title="@string/picture_history_title" />
     </PreferenceCategory>
 </PreferenceScreen>

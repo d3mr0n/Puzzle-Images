@@ -1,7 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".PuzzleActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="1"
@@ -9,25 +8,23 @@
     <item
         android:id="@+id/action_solve"
         android:orderInCategory="2"
-        android:title="Собрать паззл"/>
+        android:title="@string/solve_puzzle" />
     <item
         android:id="@+id/action_shuffle"
         android:icon="@drawable/shuffle_icn"
         android:orderInCategory="2"
-        android:title="Shuffle"
+        android:title="@string/shuffle_puzzle"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_gallery"
         android:icon="@drawable/add_gallery_icn"
         android:orderInCategory="3"
-        android:title="Take Gallery"
+        android:title="@string/take_gallery"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_camera"
         android:icon="@drawable/add_camera_icn"
         android:orderInCategory="4"
-        android:title="Take Camera"
+        android:title="@string/take_camera"
         app:showAsAction="always" />
-
-
 </menu>
