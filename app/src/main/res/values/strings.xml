@@ -54,4 +54,11 @@
     <string name="size_four">Размер 4x4</string>
     <string name="size_five">Размер 5x5</string>
     <string name="size_six">Размер 6x6</string>
+    <string name="shuffle_steps_title">Количество перемешиваний</string>
+    <string name="shuffle_steps_summary">Изменение количества шагов при перемешивании частей паззла</string>
+    <string name="shuffle_steps_one">Минимальное</string>
+    <string name="shuffle_steps_two">Умеренное</string>
+    <string name="shuffle_steps_three">Среднее</string>
+    <string name="shuffle_steps_four">Большое</string>
+    <string name="shuffle_steps_five">Должно хватить</string>
 </resources>

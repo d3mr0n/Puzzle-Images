@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -26,6 +27,7 @@ import androidx.exifinterface.media.ExifInterface
 import androidx.exifinterface.media.ExifInterface.*
 import androidx.preference.PreferenceManager
 import by.app.puzzleimages.PuzzleBoard.Companion.score
+import by.app.puzzleimages.PuzzleBoardView.Companion.NUM_SHUFFLE_STEPS
 import kotlinx.android.synthetic.main.activity_game.*
 import java.io.File
 import java.io.IOException
@@ -39,6 +41,7 @@ class PuzzleActivity : AppCompatActivity() {
     private var boardView: PuzzleBoardView? = null
     private var photoURI: Uri? = null
     private var photo: File? = null
+    private var shuffleSteps = 40
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +125,15 @@ class PuzzleActivity : AppCompatActivity() {
         return true
     }
 
+    // For change Shuffle Steps after return from settings
+    override fun onResume() {
+        val pref: SharedPreferences = PreferenceManager
+            .getDefaultSharedPreferences(this)
+        val listValue = pref.getString("shuffle_steps_key", "")!!.toInt()
+        this.shuffleSteps = listValue
+        super.onResume()
+    }
+
     // Buttons of ActionBar
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
@@ -129,6 +141,8 @@ class PuzzleActivity : AppCompatActivity() {
             true
         }
         R.id.action_shuffle -> {
+            NUM_SHUFFLE_STEPS = shuffleSteps
+            Log.d(TAG, "Size Shuffle: $NUM_SHUFFLE_STEPS")
             boardView!!.shuffle()
             true
         }
@@ -198,8 +212,8 @@ class PuzzleActivity : AppCompatActivity() {
                 Log.v(TAG, "Couldn't create File photo :", ex)
             }
             if (photo != null) {
-                    photoURI = Uri.fromFile(photo)
-                    takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                photoURI = Uri.fromFile(photo)
+                takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 startActivityForResult(
                     takePicIntent,
                     REQUEST_IMAGE_CAPTURE

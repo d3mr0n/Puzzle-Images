@@ -189,7 +189,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
     }
 
     companion object {
-        const val NUM_SHUFFLE_STEPS = 40
+        var NUM_SHUFFLE_STEPS = 40
         val COMPARATOR: Comparator<PuzzleBoard> =
             Comparator { puzzleBoard, t1 ->
                 when {

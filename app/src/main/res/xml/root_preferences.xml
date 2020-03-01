@@ -26,5 +26,13 @@
             app:iconSpaceReserved="false"
             app:key="picture_history_switch"
             app:title="@string/picture_history_title" />
+        <ListPreference
+            android:defaultValue="40"
+            android:entries="@array/entry_shuffle_text"
+            android:entryValues="@array/entry_shuffle_steps"
+            android:key="shuffle_steps_key"
+            android:summary="@string/shuffle_steps_summary"
+            android:title="@string/shuffle_steps_title"
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

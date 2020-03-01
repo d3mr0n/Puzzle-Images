@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entry_shuffle_steps">
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+    </string-array>
+    <string-array name="entry_shuffle_text">
+        <item>@string/shuffle_steps_one</item>
+        <item>@string/shuffle_steps_two</item>
+        <item>@string/shuffle_steps_three</item>
+        <item>@string/shuffle_steps_four</item>
+        <item>@string/shuffle_steps_five</item>
+    </string-array>
+</resources>
