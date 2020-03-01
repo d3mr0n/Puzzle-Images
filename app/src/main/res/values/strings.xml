@@ -61,4 +61,6 @@
     <string name="shuffle_steps_three">Среднее</string>
     <string name="shuffle_steps_four">Большое</string>
     <string name="shuffle_steps_five">Должно хватить</string>
+    <string name="hint_text">Нажми нежно, чтобы закрыть</string>
+    <string name="visibility_puzzle">Подсказка</string>
 </resources>

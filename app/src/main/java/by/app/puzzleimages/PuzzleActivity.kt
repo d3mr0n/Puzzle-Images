@@ -1,13 +1,16 @@
 package by.app.puzzleimages
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.Matrix
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -29,6 +32,7 @@ import androidx.preference.PreferenceManager
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import by.app.puzzleimages.PuzzleBoardView.Companion.NUM_SHUFFLE_STEPS
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.dialog_original_picture.view.*
 import java.io.File
 import java.io.IOException
 
@@ -129,7 +133,7 @@ class PuzzleActivity : AppCompatActivity() {
     override fun onResume() {
         val pref: SharedPreferences = PreferenceManager
             .getDefaultSharedPreferences(this)
-        val listValue = pref.getString("shuffle_steps_key", "")!!.toInt()
+        val listValue = pref.getString("shuffle_steps_key", "40")!!.toInt()
         this.shuffleSteps = listValue
         super.onResume()
     }
@@ -158,7 +162,29 @@ class PuzzleActivity : AppCompatActivity() {
             dispatchTakeGallery()
             true
         }
+        R.id.action_visibility -> {
+            showImageOriginal()
+            true
+        }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    // Dialog with the original puzzle image
+    @SuppressLint("InflateParams")
+    fun showImageOriginal() {
+        val alertDialog: AlertDialog?
+        val dialogBuilder = AlertDialog.Builder(this)
+        val layoutView: View = layoutInflater.inflate(R.layout.dialog_original_picture, null)
+        layoutView.imageHint.setImageBitmap(imageBitmap)
+        layoutView.imageHint.layoutParams.height = boardView!!.imageWidth
+        layoutView.imageHint.layoutParams.width = boardView!!.imageWidth
+        layoutView.imageHint.requestLayout()
+        dialogBuilder.setView(layoutView)
+        alertDialog = dialogBuilder.create()
+        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+        layoutView.dialog_hint.setOnClickListener { alertDialog.dismiss() }
     }
 
     // Show Dialog of all results
