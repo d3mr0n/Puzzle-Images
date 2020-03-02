@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -330,6 +331,23 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     companion object {
+        // Sound when tiles are moves with SwitchPreference check
+        fun soundClick(context: Context) {
+            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                    "sound_switch",
+                    true
+                )
+            ) {
+                val mp: MediaPlayer = MediaPlayer.create(context, R.raw.sound_chip)
+                mp.setOnCompletionListener { mp ->
+                    mp.reset()
+                    mp.release()
+                    Log.e("Sound", "Click")
+                }
+                mp.start()
+            }
+        }
+
         private const val TAG = "PuzzleActivity"
         const val REQUEST_IMAGE_CAPTURE = 1
         const val PICK_IMAGE_REQUEST = 2

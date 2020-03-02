@@ -7,12 +7,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.media.MediaPlayer
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import by.app.puzzleimages.PuzzleActivity.Companion.imageBitmap
+import by.app.puzzleimages.PuzzleActivity.Companion.soundClick
 import by.app.puzzleimages.PuzzleBoard.Companion.score
 import java.util.*
 
@@ -82,14 +82,13 @@ class PuzzleBoardView(context: Context?) : View(context) {
         if (animation == null && puzzleBoard != null) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> if (puzzleBoard!!.click(event.x, event.y)) {
+                    soundClick(context)
                     invalidate()
                     if (puzzleBoard!!.resolved()) {
                         val toast =
                             Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT)
                         toast.show()
                         endGame(context)
-                    } else {
-                        soundClick()
                     }
                     return true
                 }
@@ -181,11 +180,6 @@ class PuzzleBoardView(context: Context?) : View(context) {
     private fun refreshScreen() {
         puzzleBoard!!.reset()
         invalidate()
-    }
-
-    private fun soundClick() {
-        val ring = MediaPlayer.create(context, R.raw.sound_chip)
-        ring.start()
     }
 
     companion object {
