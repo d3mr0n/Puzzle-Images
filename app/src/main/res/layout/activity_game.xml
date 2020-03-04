@@ -39,6 +39,12 @@
             android:textSize="18.0sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/material_brown_600" />
     </FrameLayout>
 
     <FrameLayout
@@ -73,6 +79,12 @@
             android:textSize="18.0sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/material_brown_600" />
     </FrameLayout>
 
     <ImageView
