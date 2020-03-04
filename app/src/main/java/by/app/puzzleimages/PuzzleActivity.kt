@@ -2,7 +2,6 @@ package by.app.puzzleimages
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -19,11 +18,9 @@ import android.os.Handler
 import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -188,19 +185,8 @@ class PuzzleActivity : AppCompatActivity() {
         layoutView.dialog_hint.setOnClickListener { alertDialog.dismiss() }
     }
 
-    // Show Dialog of all results
-    @SuppressLint("InflateParams")
     fun highScoreView(view: View) {
-        val inflater =
-            getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.dialog_result, null)
-        val dialog = Dialog(this)
-        dialog.setContentView(view)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
-        dialogButton.setOnClickListener { dialog.dismiss() }
-        dialog.show()
+        MainActivity.highScoreShow(this)
     }
 
     // Call activity for camera or gallery

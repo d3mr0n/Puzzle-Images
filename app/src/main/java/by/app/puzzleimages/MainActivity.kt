@@ -15,7 +15,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -31,12 +30,35 @@ class MainActivity : AppCompatActivity() {
             Log.i("Notify", "Alarm")
             notificationReminder()
         }
-        gameBtnClick()
-        settingsBtnClick()
-        helpBtnClick()
-        exitBtnClick()
-        results_btn.setOnClickListener {
-            dialogResult()
+    }
+
+    fun btnClick(view: View) {
+        when (view.id) {
+            R.id.play_btn -> {
+                startActivity(Intent(this, ChooseGameActivity::class.java))
+            }
+            R.id.results_btn -> {
+                highScoreShow(this)
+            }
+            R.id.settings_btn -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
+            R.id.exit_btn -> {
+                Toast.makeText(this@MainActivity, "Приложение закрыто...", Toast.LENGTH_SHORT)
+                    .show()
+                this.finishAffinity()
+                exitProcess(0)
+            }
+            R.id.help_btn -> {
+                val helpDialog = AlertDialog.Builder(this)
+                with(helpDialog) {
+                    setTitle(R.string.help_title)
+                    setMessage(R.string.help_text)
+                    setIcon(android.R.drawable.ic_dialog_info)
+                    setPositiveButton("Закрыть", null)
+                    show()
+                }
+            }
         }
     }
 
@@ -60,51 +82,20 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun exitBtnClick() {
-        exit_btn.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Приложение закрыто...", Toast.LENGTH_SHORT).show()
-            this.finishAffinity()
-            exitProcess(0)
+    companion object {
+        // Show Dialog of all results
+        @SuppressLint("InflateParams")
+        fun highScoreShow(context: Context) {
+            val inflater =
+                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(R.layout.dialog_result, null)
+            val dialog = Dialog(context)
+            dialog.setContentView(view)
+            dialog.setCancelable(true)
+            dialog.setCanceledOnTouchOutside(true)
+            val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
+            dialogButton.setOnClickListener { dialog.dismiss() }
+            dialog.show()
         }
-    }
-
-    private fun helpBtnClick() {
-        help_btn.setOnClickListener {
-            val helpDialog = AlertDialog.Builder(this)
-            with(helpDialog) {
-                setTitle(R.string.help_title)
-                setMessage(R.string.help_text)
-                setIcon(android.R.drawable.ic_dialog_info)
-                setPositiveButton("Закрыть", null)
-                show()
-            }
-        }
-    }
-
-    private fun settingsBtnClick() {
-        settings_btn.setOnClickListener {
-            val settingsIntent = Intent(this, SettingsActivity::class.java)
-            startActivity(settingsIntent)
-        }
-    }
-
-    private fun gameBtnClick() {
-        play_btn.setOnClickListener {
-            startActivity(Intent(this, ChooseGameActivity::class.java))
-        }
-    }
-
-    @SuppressLint("InflateParams")
-    fun dialogResult() {
-        val inflater =
-            getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.dialog_result, null)
-        val dialog = Dialog(this)
-        dialog.setContentView(view)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
-        dialogButton.setOnClickListener { dialog.dismiss() }
-        dialog.show()
     }
 }
