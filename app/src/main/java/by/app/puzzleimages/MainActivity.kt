@@ -1,7 +1,6 @@
 package by.app.puzzleimages
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlarmManager
 import android.app.Dialog
 import android.app.PendingIntent
@@ -15,7 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.dialog_result.*
 import kotlinx.android.synthetic.main.dialog_result.view.*
 import java.util.*
@@ -105,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             dialog.button_reset_results.setOnClickListener {
                 dbHandler.deleteAllRecords()
                 dialog.dismiss()
-                (context as Activity).high_score.text = "0"
                 Toast.makeText(context, R.string.delete_result_toast, Toast.LENGTH_SHORT).show()
             }
             dialog.btn_close_result.setOnClickListener { dialog.dismiss() }
