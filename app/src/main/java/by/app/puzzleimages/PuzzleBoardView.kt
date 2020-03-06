@@ -99,7 +99,6 @@ class PuzzleBoardView(context: Context?) : View(context) {
     }
 
     // Showing when game is solved
-    @SuppressLint("StringFormatInvalid", "StringFormatMatches")
     private fun endGame(context: Context) {
         val gameSolved = AlertDialog.Builder(context)
         with(gameSolved) {

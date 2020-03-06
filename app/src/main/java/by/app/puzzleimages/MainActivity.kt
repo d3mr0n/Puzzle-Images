@@ -41,14 +41,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, ChooseGameActivity::class.java))
             }
             R.id.results_btn -> {
-                highScoreShow(this)
+                highScoreShow(this, disableReset = false)
             }
             R.id.settings_btn -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
             R.id.exit_btn -> {
-                Toast.makeText(this@MainActivity, "Приложение закрыто...", Toast.LENGTH_SHORT)
-                    .show()
                 this.finishAffinity()
                 exitProcess(0)
             }
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     setTitle(R.string.help_title)
                     setMessage(R.string.help_text)
                     setIcon(android.R.drawable.ic_dialog_info)
-                    setPositiveButton("Закрыть", null)
+                    setPositiveButton(R.string.close, null)
                     show()
                 }
             }
@@ -88,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         // Show Dialog of all results
         @SuppressLint("InflateParams")
-        fun highScoreShow(context: Context) {
+        fun highScoreShow(context: Context, disableReset: Boolean) {
             val inflater =
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view: View = inflater.inflate(R.layout.dialog_result, null)
@@ -102,6 +100,8 @@ class MainActivity : AppCompatActivity() {
             view.tableCell_two.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_four)
             view.tableCell_three.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_five)
             view.tableCell_four.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_six)
+            if (disableReset)
+                dialog.button_reset_results.visibility = View.GONE
             dialog.button_reset_results.setOnClickListener {
                 dbHandler.deleteAllRecords()
                 dialog.dismiss()

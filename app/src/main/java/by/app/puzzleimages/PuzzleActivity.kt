@@ -181,8 +181,9 @@ class PuzzleActivity : AppCompatActivity() {
         layoutView.dialog_hint.setOnClickListener { alertDialog.dismiss() }
     }
 
+    // Show High score Table with Disabled reset button
     fun highScoreView(view: View) {
-        MainActivity.highScoreShow(this)
+        MainActivity.highScoreShow(this, disableReset = true)
     }
 
     // Call activity for camera or gallery
