@@ -63,4 +63,5 @@
     <string name="shuffle_steps_five">Должно хватить</string>
     <string name="hint_text">Нажми нежно, чтобы закрыть</string>
     <string name="visibility_puzzle">Подсказка</string>
+    <string name="delete_result_toast">Рекорды сброшены!</string>
 </resources>

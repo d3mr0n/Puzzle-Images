@@ -1,6 +1,7 @@
 package by.app.puzzleimages
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlarmManager
 import android.app.Dialog
 import android.app.PendingIntent
@@ -10,11 +11,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.dialog_result.*
+import kotlinx.android.synthetic.main.dialog_result.view.*
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -93,8 +96,19 @@ class MainActivity : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.setCancelable(true)
             dialog.setCanceledOnTouchOutside(true)
-            val dialogButton: Button = dialog.findViewById<View>(R.id.btn_close_result) as Button
-            dialogButton.setOnClickListener { dialog.dismiss() }
+
+            val dbHandler = DBHelper(context, null)
+            view.tableCell_one.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_three)
+            view.tableCell_two.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_four)
+            view.tableCell_three.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_five)
+            view.tableCell_four.text = dbHandler.getAllMaxRecords(DBHelper.COLUMN_six)
+            dialog.button_reset_results.setOnClickListener {
+                dbHandler.deleteAllRecords()
+                dialog.dismiss()
+                (context as Activity).high_score.text = "0"
+                Toast.makeText(context, R.string.delete_result_toast, Toast.LENGTH_SHORT).show()
+            }
+            dialog.btn_close_result.setOnClickListener { dialog.dismiss() }
             dialog.show()
         }
     }

@@ -14,6 +14,7 @@ import android.widget.Toast
 import by.app.puzzleimages.PuzzleActivity.Companion.imageBitmap
 import by.app.puzzleimages.PuzzleActivity.Companion.soundClick
 import by.app.puzzleimages.PuzzleBoard.Companion.score
+import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
 
 class PuzzleBoardView(context: Context?) : View(context) {
@@ -110,18 +111,36 @@ class PuzzleBoardView(context: Context?) : View(context) {
                 val text: String =
                     String.format(resources.getString(R.string.game_solved_success), score)
                 setMessage(text)
+                // Add result to DataBase
+                if (score.toString() > (context as Activity).high_score.text.toString()) {
+                    val dbHandler = DBHelper(context, null)
+                    val user = context.score_count.text.toString()
+                    dbHandler.addResult(user)
+                }
             }
-            score = 0
             setNegativeButton(R.string.no) { _, _ ->
+                score = 0
                 val intent = Intent(context, MainActivity::class.java)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
             }
             setPositiveButton(R.string.yes) { _, _ ->
+                readHighResult()
                 initialize(imageBitmap)
+                score = 0
             }
             show()
         }
+    }
+
+    // Read High Result from DataBase (PuzzleActivity)
+    fun readHighResult() {
+        val dbHandler = DBHelper(context, null)
+        val cursor = dbHandler.getAllName()
+        cursor!!.moveToFirst()
+        if (!cursor.isAfterLast && cursor.getInt(0) > 0)
+            (context as Activity).high_score.text = cursor.getString(0)
+        cursor.close()
     }
 
     fun solve() {

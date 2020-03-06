@@ -34,7 +34,7 @@
             android:layout_marginTop="24.0dip"
             android:background="@drawable/score_background"
             android:gravity="center"
-            android:text="10"
+            android:text="0"
             android:textColor="#ffffffff"
             android:textSize="18.0sp"
             android:textStyle="bold"

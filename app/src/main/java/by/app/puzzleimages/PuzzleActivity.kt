@@ -61,6 +61,7 @@ class PuzzleActivity : AppCompatActivity() {
         )
         container.addView(boardView)
         putImagePuzzle()
+        boardView!!.readHighResult()
         countScore.start()
     }
 
@@ -94,12 +95,7 @@ class PuzzleActivity : AppCompatActivity() {
             try {
                 while (!this.isInterrupted) {
                     sleep(500)
-                    runOnUiThread {
-                        score_count.text = "" + score
-                        if (score_count.text.length >= high_score.text.length) {
-                            high_score.text = score_count.text
-                        }
-                    }
+                    runOnUiThread { score_count.text = "" + score }
                 }
             } catch (e: InterruptedException) {
             }
@@ -109,6 +105,7 @@ class PuzzleActivity : AppCompatActivity() {
     // Double click 'Back' buttn to return from game
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
+            score = 0
             super.onBackPressed()
             return
         }
