@@ -70,7 +70,6 @@ class PuzzleActivity : AppCompatActivity() {
     private fun putImagePuzzle() {
         Handler().postDelayed({
             imageCheckNumTiles()
-            cropImageToSquare()
             boardView!!.initialize(imageBitmap)
 
             img.layoutParams.height = boardView!!.imageWidth
