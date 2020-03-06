@@ -49,7 +49,7 @@
     <string name="results">Результаты</string>
     <string name="play">Играть</string>
     <string name="high_score">Рекорд</string>
-    <string name="high_score_choose_game">Рекорд: </string>
+    <string name="high_score_choose_game">Рекорд:\u0020</string>
     <string name="size_three">Размер 3x3</string>
     <string name="size_four">Размер 4x4</string>
     <string name="size_five">Размер 5x5</string>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_choose_game.*
 
 class ChooseGameActivity : AppCompatActivity() {
 
@@ -13,6 +14,24 @@ class ChooseGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choose_game)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    // Show High results in Activity Choosing Game
+    override fun onStart() {
+        val dbHandler = DBHelper(this, null)
+        record_one.setText(R.string.high_score_choose_game)
+        record_two.setText(R.string.high_score_choose_game)
+        record_three.setText(R.string.high_score_choose_game)
+        record_four.setText(R.string.high_score_choose_game)
+        try {
+            record_one.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_three))
+            record_two.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_four))
+            record_three.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_five))
+            record_four.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_six))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        super.onStart()
     }
 
     fun onClickCard(v: View) {

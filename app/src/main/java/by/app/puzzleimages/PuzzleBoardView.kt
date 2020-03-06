@@ -112,11 +112,9 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     String.format(resources.getString(R.string.game_solved_success), score)
                 setMessage(text)
                 // Add result to DataBase
-                if (score.toString() > (context as Activity).high_score.text.toString()) {
                     val dbHandler = DBHelper(context, null)
-                    val user = context.score_count.text.toString()
+                    val user = score.toString()
                     dbHandler.addResult(user)
-                }
             }
             setNegativeButton(R.string.no) { _, _ ->
                 score = 0
