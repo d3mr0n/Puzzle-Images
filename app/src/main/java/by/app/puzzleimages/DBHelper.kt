@@ -22,6 +22,10 @@ class DBHelper(
             "CREATE TABLE IF NOT EXISTS $TABLE_NAME ($COLUMN_three INTEGER," +
                     "$COLUMN_four INTEGER, $COLUMN_five INTEGER, $COLUMN_six INTEGER);"
         )
+        db.execSQL(
+            "INSERT INTO $TABLE_NAME ($COLUMN_three, $COLUMN_four, " +
+                    "$COLUMN_five, $COLUMN_six) VALUES(0, 0, 0, 0)"
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -42,31 +46,31 @@ class DBHelper(
         db.close()
     }
 
-    // Get All Max records for ResultsTable
+    // Get All Min records for ResultsTable
     fun getAllMaxRecords(level: String): String? {
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT MAX($level) FROM $TABLE_NAME", null)
+        val cursor = db.rawQuery("SELECT IFNULL(MIN(NULLIF($level, 0)), 0) FROM $TABLE_NAME", null)
         cursor.moveToFirst()
         val result = cursor.getString(0)
         cursor.close()
         return result
     }
 
-    // Get Max record for current game
+    // Get Min record for current game
     @SuppressLint("Recycle")
     fun getAllName(): Cursor? {
         val db = this.readableDatabase
         return when (PuzzleBoard.NUM_TILES) {
             3 ->
-                db.rawQuery("SELECT MAX($COLUMN_three) FROM $TABLE_NAME", null)
+                db.rawQuery("SELECT IFNULL(MIN(NULLIF($COLUMN_three, 0)), 0) FROM $TABLE_NAME", null)
             4 ->
-                db.rawQuery("SELECT MAX($COLUMN_four) FROM $TABLE_NAME", null)
+                db.rawQuery("SELECT IFNULL(MIN(NULLIF($COLUMN_four, 0)), 0) FROM $TABLE_NAME", null)
             5 ->
-                db.rawQuery("SELECT MAX($COLUMN_five) FROM $TABLE_NAME", null)
+                db.rawQuery("SELECT IFNULL(MIN(NULLIF($COLUMN_five, 0)), 0) FROM $TABLE_NAME", null)
             6 ->
-                db.rawQuery("SELECT MAX($COLUMN_six) FROM $TABLE_NAME", null)
+                db.rawQuery("SELECT IFNULL(MIN(NULLIF($COLUMN_six, 0)), 0) FROM $TABLE_NAME", null)
 
-            else -> db.rawQuery("SELECT MAX(*) FROM $TABLE_NAME", null)
+            else -> db.rawQuery("SELECT MIN(*) FROM $TABLE_NAME", null)
         }
     }
 

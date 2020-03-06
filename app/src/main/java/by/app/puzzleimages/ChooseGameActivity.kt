@@ -1,5 +1,6 @@
 package by.app.puzzleimages
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -16,21 +17,18 @@ class ChooseGameActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    // Show High results in Activity Choosing Game
+    // Show High result in Activity Choosing Game
+    @SuppressLint("SetTextI18n")
     override fun onStart() {
         val dbHandler = DBHelper(this, null)
-        record_one.setText(R.string.high_score_choose_game)
-        record_two.setText(R.string.high_score_choose_game)
-        record_three.setText(R.string.high_score_choose_game)
-        record_four.setText(R.string.high_score_choose_game)
-        try {
-            record_one.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_three))
-            record_two.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_four))
-            record_three.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_five))
-            record_four.append(dbHandler.getAllMaxRecords(DBHelper.COLUMN_six))
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        record_one.text = getString(R.string.high_score_choose_game) +
+                dbHandler.getAllMaxRecords(DBHelper.COLUMN_three)
+        record_two.text = getString(R.string.high_score_choose_game) +
+                dbHandler.getAllMaxRecords(DBHelper.COLUMN_four)
+        record_three.text = getString(R.string.high_score_choose_game) +
+                dbHandler.getAllMaxRecords(DBHelper.COLUMN_five)
+        record_four.text = getString(R.string.high_score_choose_game) +
+                dbHandler.getAllMaxRecords(DBHelper.COLUMN_six)
         super.onStart()
     }
 
