@@ -33,6 +33,8 @@ import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.dialog_original_picture.view.*
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Suppress(
     "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION", "NAME_SHADOWING",
@@ -245,10 +247,15 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     @Throws(IOException::class)
-    private fun createImageFile(): File {
+    private fun createImageFile(): File? {
         val storageDir: File? =
             getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile("photo", ".jpg", storageDir)
+        val timeStamp: String =
+            SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(Date())
+        return File(
+            storageDir!!.path + File.separator.toString() +
+                    "IMG_" + timeStamp + ".jpg"
+        )
     }
 
     // Some phones store image in landscape, some in portrait.
@@ -282,10 +289,8 @@ class PuzzleActivity : AppCompatActivity() {
     // Make sure photos aren't being needlessly persistently kept in phone storage:
     // With checking checkbox in settings
     private fun deletePicHistory() {
-        if (PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean(
-                "picture_history_switch",
-                true
-            )
+        if (!PreferenceManager.getDefaultSharedPreferences
+                (applicationContext).getBoolean("picture_history_switch", true)
         ) {
             val dir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES) ?: return
             val path = dir.toString()
