@@ -1,67 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Puzzle Images</string>
-    <string name="title_game">Puzzle</string>
-    <string name="title_activity_settings">Настройки игры</string>
-    <string name="title_choose_level">Выбор уровня</string>
-    <string name="help_title">Помощь</string>
-    <string name="help_text">Известная игра из серии головоломок.
-        Имеются поля с размерами 3x3, 4x4, 5x5, 6x6, в которых по умолчанию расположены фишки,
-        пронумерованные числами от 1 до 8, от 1 до 15, от 1 до 24, от 1 до 35 соответственно.
-        Помимо стандартных фишек можно использовать свои изображения.
-        Игрок может перемещать фишки в поле за счет свободной ячейки.
-        \nЦель игры — собрать фишки в поле с номерами по порядку,
-        используя как можно меньше число ходов.</string>
-    <string name="app_exit">Приложение закрыто…</string>
-    <string name="close">Закрыть</string>
-    <string name="reset">Сбросить</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
-    <string name="notification_title">Мы скучали…</string>
-    <string name="notification_summary">Возвращайтесь и продолжите игру</string>
-    <string name="game_settings">Настройки игры</string>
-    <string name="notify_settings_title">Включить уведомление</string>
-    <string name="notify_settings_summary">Напоминание о игре каждый день</string>
-    <string name="sound_summary_off">Звуковые эфекты игры включены</string>
-    <string name="sound_summary_on">Звуковые эфекты игры выключены</string>
-    <string name="sound_title">Звук игры</string>
-    <string name="picture_history_summary">Сохранение фотографий камеры в памяти сделаных
-        через приложение</string>
-    <string name="picture_history_title">Сохранение фотографий</string>
-    <string name="solve_puzzle">Собрать паззл</string>
+    <string name="app_name" translatable="false">Puzzle Images</string>
+    <string name="title_game" translatable="false">Puzzle</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_choose_level">Choose level</string>
+    <string name="help_title">Help</string>
+    <string name="help_text">A well-known game from the puzzle series.
+            There are fields with sizes 3x3, 4x4, 5x5, 6x6, where chips are located by default,
+            numbered from 1 to 8, from 1 to 15, from 1 to 24, from 1 to 35, respectively.
+            In addition to the standard chips, you can use your own images.
+            The player can move the chips in the field at the expense of a free cell.
+            \nThe goal of the game is to collect chips in a field with numbers in order,
+            using as few moves as possible.
+        </string>
+    <string name="app_exit">App closed…</string>
+    <string name="close">Close</string>
+    <string name="reset">Reset</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="notification_title">We missed U…</string>
+    <string name="notification_summary">Go back and continue playing</string>
+    <string name="game_settings">Game Settings</string>
+    <string name="notify_settings_title">Enable notification</string>
+    <string name="notify_settings_summary">Reminder about the game every day</string>
+    <string name="sound_summary_off">The game\'s sound effects are enabled</string>
+    <string name="sound_summary_on">The game\'s sound effects are disabled</string>
+    <string name="sound_title">Sound of the game</string>
+    <string name="picture_history_summary">Saving photos to memory using the camera
+        launched from the app</string>
+    <string name="picture_history_title">Saving photos</string>
+    <string name="solve_puzzle">Solve puzzle</string>
     <string name="shuffle_puzzle">Shuffle</string>
     <string name="take_gallery">Take Gallery</string>
     <string name="take_camera">Take Camera</string>
-    <string name="best_results">Лучшие результаты:</string>
-    <string name="game_end_title">Игра окончена</string>
-    <string name="game_solved_failed">Печалька!
-        Игру даже не удается завершить авторешением!\nНе стоило так усердно перемешивать :)\n
-        \nПопробовать снова?</string>
-    <string name="game_solved_success">Поздравляем!
-        Вы собрали мозаику!\nЗатраченных шагов: %1$s\n\nПопробовать снова?</string>
-    <string name="hold_back">Нажмите еще раз для выхода\n     \t\t\tИгра будет потеряна!</string>
-    <string name="solution_steps">\t\t\t\tSolved!\nSolution steps: %1$s</string>
-    <string name="size">Размер</string>
-    <string name="score">Очки</string>
-    <string name="exit">Выход</string>
-    <string name="help">Помощь</string>
-    <string name="settings">Настройки</string>
-    <string name="results">Результаты</string>
-    <string name="play">Играть</string>
-    <string name="high_score">Рекорд</string>
-    <string name="high_score_choose_game">Рекорд:\u0020</string>
-    <string name="size_three">Размер 3x3</string>
-    <string name="size_four">Размер 4x4</string>
-    <string name="size_five">Размер 5x5</string>
-    <string name="size_six">Размер 6x6</string>
-    <string name="shuffle_steps_title">Количество перемешиваний</string>
-    <string name="shuffle_steps_summary">Изменение количества шагов при перемешивании частей паззла</string>
-    <string name="shuffle_steps_one">Минимальное</string>
-    <string name="shuffle_steps_two">Умеренное</string>
-    <string name="shuffle_steps_three">Среднее</string>
-    <string name="shuffle_steps_four">Большое</string>
-    <string name="shuffle_steps_five">Должно хватить</string>
-    <string name="hint_text">Нажми нежно, чтобы закрыть</string>
-    <string name="visibility_puzzle">Подсказка</string>
-    <string name="delete_result_toast">Рекорды сброшены!</string>
+    <string name="best_results">Best results:</string>
+    <string name="game_end_title">The game is over</string>
+    <string name="game_solved_failed">Sad!
+            The game can\'t even be completed by auto-solution!\nIt was not worth shuffle so hard :)
+            \nTry again?</string>
+    <string name="game_solved_success">Congratulations!
+            \nYou have completed the puzzle!\nSteps taken: %1$s\n\nTry again?</string>
+    <string name="hold_back">Click again to exit\nThe game will be lost!</string>
+    <string name="solution_steps">Solved!\nSolution steps: %1$s</string>
+    <string name="size">Size</string>
+    <string name="score">Score</string>
+    <string name="exit">Exit</string>
+    <string name="help">Help</string>
+    <string name="settings">Settings</string>
+    <string name="results">Results</string>
+    <string name="play">Play</string>
+    <string name="high_score">Record</string>
+    <string name="high_score_choose_game">Record:\u0020</string>
+    <string name="size_three">Size 3x3</string>
+    <string name="size_four">Size 4x4</string>
+    <string name="size_five">Size 5x5</string>
+    <string name="size_six">Size 6x6</string>
+    <string name="shuffle_steps_title">The number of shuffling moves</string>
+    <string name="shuffle_steps_summary">Changing the number of steps when shuffle puzzle pieces</string>
+    <string name="shuffle_steps_one">Minimum</string>
+    <string name="shuffle_steps_two">Moderate</string>
+    <string name="shuffle_steps_three">Medium</string>
+    <string name="shuffle_steps_four">Large</string>
+    <string name="shuffle_steps_five">Should be enough</string>
+    <string name="hint_text">Tap to close</string>
+    <string name="visibility_puzzle">Hint</string>
+    <string name="delete_result_toast">Records reset!</string>
 </resources>
