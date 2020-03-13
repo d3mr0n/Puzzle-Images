@@ -73,6 +73,7 @@ class PuzzleActivity : AppCompatActivity() {
         Handler().postDelayed({
             imageCheckNumTiles()
             boardView!!.initialize(imageBitmap)
+            boardView!!.shuffle()
 
             img.layoutParams.height = boardView!!.imageWidth
             Log.d("Width", "" + boardView!!.imageWidth)
@@ -212,6 +213,7 @@ class PuzzleActivity : AppCompatActivity() {
             cropImageToSquare()
             boardView!!.initialize(imageBitmap)
         }
+        boardView!!.shuffle()
     }
 
     // Take Picture from Camera
