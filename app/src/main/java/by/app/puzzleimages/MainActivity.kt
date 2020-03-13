@@ -7,13 +7,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.dialog_result.*
 import kotlinx.android.synthetic.main.dialog_result.view.*
 import java.util.*
@@ -23,14 +21,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean(
-                "notifications_switch",
-                true
-            )
-        ) {
-            Log.i("Notify", "Alarm")
-            notificationReminder()
-        }
+        notificationReminder()
     }
 
     fun btnClick(view: View) {
@@ -63,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun notificationReminder() {
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR, 7)
+        calendar.set(Calendar.HOUR, 23)
         val intent = Intent(applicationContext, AlarmReceiver::class.java)
         intent.action = "MY_NOTIFICATION_MESSAGE"
         val pendingIntent = PendingIntent.getBroadcast(
