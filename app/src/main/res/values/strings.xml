@@ -41,7 +41,8 @@
     <string name="game_solved_success">Congratulations!
             \nYou have completed the puzzle!\nSteps taken: %1$s\n\nTry again?</string>
     <string name="hold_back">Click again to exit\nThe game will be lost!</string>
-    <string name="solution_steps">Solved!\nSolution steps: %1$s</string>
+    <string name="solution_steps">The game ended by auto-solution.
+        \nSteps taken: %1$s</string>
     <string name="size">Size</string>
     <string name="score">Score</string>
     <string name="exit">Exit</string>
@@ -62,7 +63,7 @@
     <string name="shuffle_steps_three">Medium</string>
     <string name="shuffle_steps_four">Large</string>
     <string name="shuffle_steps_five">Should be enough</string>
-    <string name="hint_text">Tap to close</string>
+    <string name="hint_text">Tap anywhere to close</string>
     <string name="visibility_puzzle">Hint</string>
     <string name="delete_result_toast">Records reset!</string>
 </resources>

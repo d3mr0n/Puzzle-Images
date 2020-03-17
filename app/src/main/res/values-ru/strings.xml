@@ -38,7 +38,8 @@
     <string name="game_solved_success">Поздравляем!
         Вы собрали мозаику!\nЗатраченных шагов: %1$s\n\nПопробовать снова?</string>
     <string name="hold_back">Нажмите еще раз для выхода\nИгра будет потеряна!</string>
-    <string name="solution_steps">Решено!\nШагов решения: %1$s</string>
+    <string name="solution_steps">Игра завершена авторешением!
+        \nЗатраченных шагов решения: %1$s</string>
     <string name="size">Размер</string>
     <string name="score">Очки</string>
     <string name="exit">Выход</string>

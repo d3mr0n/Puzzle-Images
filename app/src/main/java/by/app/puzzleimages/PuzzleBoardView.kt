@@ -37,6 +37,7 @@ class PuzzleBoardView(context: Context?) : View(context) {
         refreshScreen()
     }
 
+    @SuppressLint("DrawAllocation", "NewApi")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (puzzleBoard != null) {
@@ -48,13 +49,16 @@ class PuzzleBoardView(context: Context?) : View(context) {
                 if (animation!!.size == 0) {
                     animation = null
                     puzzleBoard!!.reset()
-                    Toast.makeText(
-                        activity,
-                        String.format(
-                            resources.getString(R.string.solution_steps),
-                            countSolve - 1
-                        ), Toast.LENGTH_LONG
-                    ).show()
+                    with(AlertDialog.Builder(context)) {
+                        setTitle(R.string.game_end_title)
+                        val gameSolutionTxt: String = String.format(
+                            resources.getString(R.string.solution_steps), countSolve - 1
+                        )
+                        setMessage(gameSolutionTxt)
+                        setPositiveButton(R.string.close, null)
+                        setOnDismissListener { shuffle() }
+                        show()
+                    }
                     countSolve = 0
                 } else {
                     this.postInvalidateDelayed(500)
@@ -111,9 +115,9 @@ class PuzzleBoardView(context: Context?) : View(context) {
                     String.format(resources.getString(R.string.game_solved_success), score)
                 setMessage(text)
                 // Add result to DataBase
-                    val dbHandler = DBHelper(context, null)
-                    val user = score.toString()
-                    dbHandler.addResult(user)
+                val dbHandler = DBHelper(context, null)
+                val user = score.toString()
+                dbHandler.addResult(user)
             }
             setNegativeButton(R.string.no) { _, _ ->
                 score = 0
